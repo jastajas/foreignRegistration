@@ -1,0 +1,312 @@
+#basicAssessmentFormBckGd {
+    display: none;
+    margin: auto;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0px;
+    overflow: scroll;
+    z-index: 500;
+}
+
+#basicAssessmentForm {
+    display: flex;
+    margin: auto;
+    padding: 20px 40px 20px 40px;
+    width: 600px;
+    height: auto;
+    background-color: rgb(160, 255, 167);
+    border-radius: 6px;
+    flex-direction: column;
+    align-items: center;
+    font-family: Verdana;
+}
+
+#mainFormHeader {
+    margin: 20px 0 50px 0;
+    background-color: #2d2d2d;
+    color: white;
+    border-radius: 5px;
+    width: 500px;
+    padding: 7px 0 7px 0;
+    text-align: center;
+    font-size: 20px;
+    font-weight: normal;
+}
+
+#mainFormDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 90%;
+    /*background-color: #2d2d2d;*/
+}
+
+.entityForm {
+    display: flex;
+    flex-direction: row;
+    margin: 0 0 15px 0;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+.mainLabel {
+    margin: 0 10px 0 0;
+    white-space: nowrap;
+    align-self: center;
+}
+
+.formSelect,
+.formText,
+.internalDiv {
+    flex-grow: 2;
+    border-radius: 3px;
+}
+
+.formText {
+    border: 1px solid grey;
+}
+
+.internalDiv {
+    display: flex;
+    white-space: nowrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#basicAssessmentForm div div div label {
+    display: flex;
+    white-space: nowrap;
+    flex-direction: row;
+    margin: 0 50px;
+}
+
+#basicAssessmentForm div div input[type="button"] {
+    border-radius: 3px;
+    width: 80px;
+    color: white;
+    background-color: #2d2d2d;
+    border: none;
+    padding: 3px;
+    border-radius: 0 3px 3px 0;
+    cursor: pointer;
+}
+
+#switcherBoxId {
+    position: relative;
+    display: block;
+    width: 100px;
+    height: 50px;
+    background-color: #e8e8e8;
+    border-radius: 3px;
+    border: solid;
+    border-width: 1px;
+    cursor: pointer;
+    box-shadow: inset -2px 4px 5px #7c7c7c;
+}
+
+#allCTD {
+    display: block;
+    position: relative;
+    top: -50px;
+    left: 26px;
+    width: 75px;
+    height: 20px;
+    border-radius: 3px;
+    background-color: transparent;
+    padding: 18px 0 15px 0;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+#partCTD {
+    display: block;
+    position: relative;
+    top: -100px;
+    left: -5px;
+    width: 0px;
+    height: 20px;
+    border-radius: 3px;
+    background-color: transparent;
+    padding: 15px 0px 15px 8px;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+#insideButtonID {
+    display: block;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 25px;
+    height: 50px;
+    border-radius: 3px;
+    background-color: #282828;
+    box-shadow: inset 2px -2px 10px #d1d7ff;
+}
+
+.checkCTD {
+    white-space: nowrap;
+    flex-direction: row;
+    margin: 0 20px;
+}
+
+#ctdPartsDiv {
+    justify-content: center;
+    display: none;
+    padding: 5px;
+}
+
+#ctdDivID {
+    border-style: solid;
+    border-width: 1px;
+
+}
+
+.formSelect:focus,
+.formText:focus,
+.internalDiv label input:focus {
+    background-color: azure;
+}
+
+#reqListDiv, #packListDiv {
+    font-family: Verdana;
+    display: none;
+    flex-direction: column;
+}
+
+#reqListDiv table, #packListDiv table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#reqListDiv table tbody, #packListDiv table tbody {
+    font-size: 14px;
+}
+
+#reqListDiv table thead,
+#packListDiv table thead {
+    background-color: rgb(70, 185, 70);
+}
+
+#reqListDiv table thead tr th, #packListDiv table thead tr th {
+    margin: 0 0 0 0;
+    border-width: 0px;
+    text-align: center;
+}
+
+#reqListDiv table tbody tr:nth-child(even), #packListDiv table tbody tr:nth-child(even) {
+    background-color: rgb(163, 220, 163);
+}
+
+#reqListDiv table tbody tr:nth-child(odd), #packListDiv table tbody tr:nth-child(odd) {
+    background-color: rgb(126, 206, 126);
+}
+
+#reqListDiv table tbody tr:hover, #packListDiv table tbody tr:hover {
+    background-color: rgb(200, 234, 200);
+}
+
+.lpColumnReq, .lpColumnPack {
+    width: 60px;
+    text-align: center;
+}
+
+.unitColumnPack {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.unitColumnPack input {
+    width: 40px;
+    background-color: transparent;
+    border: none;
+    color: black;
+    text-align: center;
+    font-family: Verdana;
+    font-size: 14px;
+    padding: 2px;
+}
+
+.valueColumnPack input {
+    text-align: center;
+    font-family: Verdana;
+    font-size: 14px;
+}
+
+.removeCol {
+    width: 100px;
+}
+
+#reqListDiv table tbody tr td button, #packListDiv table tbody tr td button, #submitBtnID {
+    background-color: #2d2d2d;
+    color: #e8e8e8;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    width: 80px;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+    right: -18px;
+}
+
+#submitBtnID:hover, #reqButtonId1:hover, #reqButtonId2:hover {
+    box-shadow: 4px 4px 5px #525459;
+
+}
+
+.requirementInput {
+    border: none;
+    background-color: transparent;
+    color: black;
+    font-family: Verdana;
+    font-size: 15px;
+    width: 100%;
+    resize: vertical;
+    height: 100%;
+    overflow: hidden;
+}
+
+.hiddenAddFormElement {
+    display: none;
+}
+
+.visibleAddFormElement {
+    display: flex;
+}
+
+#procesPopUpForm {
+    width: 400px;
+}
+
+#procesPopUpFormHeader {
+    width: 300px;
+}
+
+#procesPopUpFormBody {
+    margin: 20px;
+    width: 300px;
+}
+
+#procesPopUpFormBody label {
+    margin: 5px;
+}
+
+#procesPopUpFormButtons {
+    width: 300px;
+}
+
+#procesPopUpFormButtons button {
+    width: 120px;
+}
+
+

@@ -1,0 +1,202 @@
+.collapseBar{
+    height: 1000px;
+    width: 30px;
+    background-color: rgb(26, 26, 26);
+    margin: 0px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-family:Verdana;
+    font-size: 14px;
+    cursor: pointer;
+    border-style: solid;
+    border-width: 0px 1px 1px 0px;
+    border-color: white;
+}
+
+.collapseBar:last-of-type {
+    border-radius: 12px;
+}
+.collapseBar:hover{
+    background-color: rgb(51, 51, 51);
+    color: red;
+}
+.collapseBar p{
+    display: flex;
+    writing-mode: tb-rl;
+    margin: 15px 0px;
+}
+#collapseDiv1{
+    width: 100%;
+}
+#collapseDiv2, #collapseDiv3, #collapseDiv4{
+    width: 0px;
+}
+.collapseDiv{
+    height: 1000px;
+    margin: 0px;
+    transition: all 1s ease;
+    display: block;
+    overflow: hidden;
+}
+
+#magicBox1, #magicBox2{
+    display: flex;
+    flex-direction: column;
+
+    width:100%;
+    height: 100%;
+}
+#magicBox1{
+    justify-content: flex-start;
+
+}
+
+
+#magicBox3, #magicBox4{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+
+#magicBox1 table{
+    margin-top:20px;
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+#magicBox1 table tbody tr{
+    border-bottom: 1px solid rgba(105, 250, 120, 1);
+}
+
+#magicBox1 table tbody tr:hover{
+    background-color: rgb(200, 234, 200);
+}
+
+html{
+    font-family:Verdana;
+}
+
+.orderDetailKey{
+    width: auto;
+    max-width: 180px;
+    padding: 20px 0 20px 0;
+
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(70, 70, 70);
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.assessmentDetValue{
+    width: auto;
+    padding: 20px 0 20px 0;
+    font-style: italic;
+}
+.editButtonCol button{
+    background-color: rgb(25,25,25);
+    border: none;
+    width: 60px;
+    padding: 5px 0px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 2px 2px 2px rgb(105,105,105);
+}
+.editButtonCol button:hover{
+    box-shadow: none;
+}
+
+
+#kanbanMainContainer{
+    height: 70%;
+    width: 100%;
+    background-color: rgba(105, 100, 120, 1);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#burnOutGraph{
+    height: 30%;
+    width: 100%;
+    background-color: rgba(200, 100, 120, 1);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+#burnOutGraph svg{
+
+}
+.kanbanBox{
+    width:27%;
+    height: 90%;
+    margin: 25px;
+    background-color: rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.kanbanBoxHeader{
+    width:100%;
+    height: 5%;
+    background-color: rgba(255, 255, 255, 0.2);
+    display: flex;
+    font-family:Verdana;
+    font-size: 14px;
+    justify-content: space-around;
+}
+.kanbanBoxHeader p{
+    margin: auto 20px auto 40px;
+    text-align: center;
+    width: 100px;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0);
+    font-weight: bold;
+    color: rgba(55, 55, 55, 1);
+}
+
+.kanbanBoxHeader div{
+    text-align: center;
+    width: 30px;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 3px;
+    margin: auto 5px;
+    font-weight: bold;
+}
+
+.kanbanBoxBody{
+    width: 100%;
+    height: 95%;
+    background-color: rgba(200, 100, 120, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.kanbanTail{
+    width: 90%;
+    height: 50px;
+    background-color: rgba( 70, 100, 120, 1);
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+#collapseContainer{
+    margin: auto;
+    background-color: rgba(105, 250, 120, 1);
+    width: 1200px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    border-radius: 7px;
+}

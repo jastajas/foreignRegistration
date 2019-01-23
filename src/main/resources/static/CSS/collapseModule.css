@@ -1,0 +1,587 @@
+
+.collapseBar {
+    height: 40px;
+    width: 1000px;
+    background-color: rgb(26, 26, 26);
+    margin: 0px auto;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: Verdana;
+    font-size: 14px;
+    cursor: pointer;
+    border-style: solid;
+    border-width: 3px 0 3px 0;
+    border-color: white;
+}
+
+.collapseBar:first-of-type {
+    border-radius: 6px 6px 0px 0px;
+}
+
+.collapseBar:hover {
+    background-color: rgb(51, 51, 51);
+    color: red;
+}
+
+.collapseBar p {
+    margin: auto 10px;
+}
+
+.collapseDiv {
+    width: 1000px;
+    /*max-height: 300px;*/
+    height: auto;
+    background-color: rgba(82, 224, 82, 0.5);
+    margin: 0px auto;
+    transition: all 1s ease;
+    display: block;
+    /*align-items: center;
+    justify-content: center;
+    overflow: hidden;*/
+    overflow: hidden;
+}
+
+.collapseDiv:last-of-type {
+    border-radius: 0px 0px 6px 6px;
+}
+
+#magicBox1,
+#magicBox2 {
+    display: flex;
+    flex-direction: column;
+}
+
+#magicBox1, #magicBox2, #magicBox3, #magicBox4 {
+    overflow: hidden;
+}
+
+#magicBox3 {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.tailsContainer{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#magicBox4 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#magicBox2 {
+    width: 100%;
+}
+
+#magicBox1 table,
+#magicBox2 table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#magicBox1 table tbody tr:nth-child(even), #magicBox2 table tbody tr:nth-child(even) {
+    background-color: rgb(163, 220, 163);
+}
+
+#magicBox1 table tbody tr:nth-child(odd), #magicBox2 table tbody tr:nth-child(odd) {
+    background-color: rgb(126, 206, 126);
+}
+
+
+#magicBox1 table tbody tr:hover, #magicBox2 table tbody tr:hover {
+    background-color: rgb(200, 234, 200);
+}
+
+#magicBox2 table thead {
+    background-color: rgb(70, 185, 70);
+}
+
+#magicBox2 table thead tr th:first-child {
+    width: 100px;
+}
+
+#magicBox2 table tbody tr td{
+    font-size: 12px;
+}
+#magicBox2 table tbody tr td:nth-child(1){
+    width: 25%;
+}
+#magicBox2 table tbody tr td:nth-child(2){
+    width: 25%;
+}
+#magicBox2 table tbody tr td:nth-child(3) ul{
+    list-style-type: none;
+}
+#magicBox2 table tbody tr td:nth-child(3) ul li{
+    margin: 5px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+#magicBox2 table tbody tr td:nth-child(4) ul{
+    list-style-type: none;
+}
+#magicBox2 table tbody tr td:nth-child(4) ul li{
+    margin: 5px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+#magicBox2 table thead tr th {
+    font-size: 12px;
+}
+
+.editButtonCol button, .editButtonCol input[type=submit] {
+    color: white;
+    border-radius: 3px;
+    border: none;
+    background-color: rgb(26, 26, 26);
+    cursor: pointer;
+    padding: 1px 4px;
+    margin: 1px;
+    font-size: 12px;
+}
+
+.assessmentDetKey {
+    width: auto;
+    max-width: 200px;
+    color: #525459;
+    text-align: center;
+    padding: 15px 4px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.assessmentDetValue{
+    width: auto;
+    padding: 2px 4px;
+}
+
+.assessmentDetValue, .assessmentDetValue select, .assessmentDetValue input{
+    font-style: italic;
+    font-size: 14px;
+}
+
+.departAssessTail {
+    margin: 10px;
+    display: flex;
+    padding: 5px;
+    height: auto;
+    width: 400px;
+    background-color: rgb(126, 206, 126);
+    border-radius: 7px;
+    text-align: center;
+    cursor: pointer;
+    font-family: Verdana;
+    font-size: 12px;
+}
+
+#addAssessmentSubj {
+    display: flex;
+    justify-content: center;
+
+}
+
+#addAssessmentSubj p {
+    font-size: 30px;
+    margin: 0px;
+    padding: 0px;
+    font-family: Verdana;
+}
+
+.departAssessTail:hover {
+    background-color: rgba(126, 206, 126, 0.6);
+}
+
+#departAssessForm {
+    margin: 50px auto;
+    display: block;
+    width: 350px;
+    height: auto;
+    background-color: rgba(82, 224, 82, 1);
+    font-size: 14px;
+    padding: 20px 0;
+}
+
+#addAssessSubjForm {
+    position: fixed;
+    left: 50%;
+    top: 0%;
+    transform: translate(-50%, 0%);
+    z-index: 100;
+    align-self: center;
+    margin: 0px auto;
+    display: none;
+    flex-flow: column nowrap;
+    width: 350px;
+    height: auto;
+    background-color: rgba(82, 224, 82, 1);
+    font-family: Verdana;
+    font-size: 14px;
+    border-width: 50px 500px 500px 500px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.4);
+    background-clip: padding-box;
+    padding: 20px 0;
+}
+
+#departAssessFormTitle, #addAssessSubjFormTitle {
+    display: flex;
+    align-self: center;
+    margin: 10px;
+    text-align: center;
+}
+
+#departAssessFormText, #addAssessSubjFormText {
+    margin: 5px auto;
+    border: none;
+    color: black;
+    border-width: 0px;
+    font-family: Verdana;
+    font-size: 15px;
+    width: 99%;
+    resize: vertical;
+    height: auto;
+    min-height: 50px;
+    overflow: hidden;
+}
+
+.assessFormClass {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px 0px;
+}
+
+.assessFormClass label {
+    font-size: 12px;
+    padding: 0px 5px;
+}
+
+#amountInputAssess {
+    width: 120px;
+}
+
+#currencySelectAssess {
+    width: 65px;
+    padding: 1px 2px;
+}
+
+#subjectDepatrmentSelect {
+    width: 120px;
+    padding: 1px 2px;
+}
+
+#costCatcherTable {
+    width: 98%;
+    height: auto;
+    display: none;
+}
+
+#costCatcherTable table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#costCatcherTable table thead {
+    background-color: rgb(70, 185, 70);
+}
+
+#costCatcherTable table thead tr th {
+    margin: 0 0 0 0;
+    border-width: 0px;
+    text-align: center;
+}
+
+#costCatcherTable table tbody tr:nth-child(even) {
+    background-color: rgb(163, 220, 163);
+}
+
+#costCatcherTable table tbody tr:nth-child(odd) {
+    background-color: rgb(126, 206, 126);
+}
+
+.lpCostCol {
+    width: 30px;
+    text-align: center;
+    font-size: 10px;
+}
+
+.removeCostCol {
+    width: 100px;
+}
+
+.costAmountCol {
+    width: 60px;
+    font-size: 10px;
+}
+
+.currAmountCol {
+    width: 40px;
+    font-size: 10px;
+}
+
+#costCatcherTable table tbody tr td button {
+    background-color: #2d2d2d;
+    color: #e8e8e8;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    width: 70px;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+    right: -18px;
+}
+
+.lpCostCol {
+    text-align: center;
+}
+
+.costInput {
+    background-color: transparent;
+    color: black;
+    border: none;
+    text-align: center;
+}
+
+.currencyInput {
+    width: 60px;
+    background-color: transparent;
+    color: black;
+    border: none;
+    text-align: center;
+}
+
+.requirementBox {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(126, 206, 126, 0.8);
+    width: 400px;
+    height: auto;
+    border-radius: 3px;
+    margin: 10px;
+    font-family: Verdana;
+}
+
+.requirementBox a:link, .requirementBox a:visited {
+    background-color: rgb(26, 26, 26);
+    display: flex;
+    width: 62px;
+    font-size: 12px;
+    color: red;
+    padding: 1px 1px 1px 4px;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: flex-end;
+    margin: 4px 4px 1px 0;
+    text-decoration: none;
+}
+
+.requirementBox a:link span, .requirementBox a:visited span {
+    color: white;
+    margin: 1px 0 0 6px;
+    font-size: 11px;
+}
+
+.requirementBox div:last-child {
+    text-align: center;
+    padding: 3px;
+}
+
+#newRequirementBox {
+    background-color: rgba(126, 206, 126, 0.8);
+    text-align: center;
+    padding: 3px;
+    width: 394px;
+    height: auto;
+    cursor: pointer;
+    border-radius: 3px;
+    margin: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: Verdana;
+}
+
+/*#addReqFormId {*/
+    /*position: fixed;*/
+    /*left: 50%;*/
+    /*top: 20%;*/
+    /*transform: translate(-50%, 0%);*/
+    /*z-index: 100;*/
+    /*align-self: center;*/
+    /*margin: 0px auto;*/
+    /*display: none;*/
+    /*flex-flow: column nowrap;*/
+    /*width: 350px;*/
+    /*height: auto;*/
+    /*background-color: rgba(82, 224, 82, 1);*/
+    /*border-radius: 7px;*/
+    /*font-family: Verdana;*/
+    /*font-size: 14px;*/
+    /*border-width: 50px 500px 500px 500px;*/
+    /*border-style: solid;*/
+    /*border-color: rgba(0, 0, 0, 0.4);*/
+    /*background-clip: padding-box;*/
+    /*padding: 20px 0;*/
+/*}*/
+
+/*#addReqFormId label {*/
+    /*align-self: center;*/
+    /*margin: 5px;*/
+    /*font-weight: bold;*/
+/*}*/
+
+/*#addReqFormId input {*/
+    /*margin: 10px 0px;*/
+/*}*/
+
+/*#addReqFormId input[type=submit], */
+#departAssessForm input[type=submit],
+#addAssessSubjForm input[type=submit] {
+    background-color: rgb(26, 26, 26);
+    border: none;
+    color: red;
+    cursor: pointer;
+    font-family: Verdana;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 3px 0px;
+}
+
+/*#addReqFormId input[type=submit]:hover, */
+#departAssessForm input[type=submit]:hover {
+    background-color: rgba(26, 26, 26, 0.9);
+}
+
+#collapseDiv {
+    width: 1000px;
+    margin: auto;
+    position: relative;
+    top: -100px;
+}
+
+.defaultFormField {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    color: black;
+    font-family: Verdana;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+.dossierTail{
+    padding: 0px 10px;
+}
+
+/*Add assessment by department form style*/
+
+#addDepartAssessForm {
+    width: 700px;
+}
+
+#addDepartAssessFormHeader {
+    width: 600px;
+}
+
+#addDepartAssessFormBody {
+    margin: 20px;
+    width: 600px;
+}
+
+#addDepartAssessFormBody label {
+    margin: 20px 0px 5px 0px;
+}
+
+#addDepartAssessFormBody table {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#addDepartAssessFormBody table tbody tr {
+    height: 35px;
+}
+
+#addDepartAssessFormBody table thead tr th {
+    font-size: 12px;
+    padding: 4px;
+}
+
+#addDepartAssessFormBody table tbody tr td,
+#addDepartAssessFormBody table thead tr th {
+    border-bottom: 2px solid rgb(130, 224, 130);
+}
+
+#addDepartAssessFormBody table tbody tr td:last-of-type {
+    width: 60px;
+}
+
+#addDepartAssessFormBody table tbody tr td input, #kanbanFormBody table tbody tr td select {
+    border: none;
+    height: 25px;
+    width: 95%;
+}
+
+#addDepartAssessFormBody table tbody tr td select {
+    height: 27px;
+}
+
+#addDepartAssessFormBody table tbody tr td button {
+    width: 80px;
+    margin: 2px 5px;
+}
+
+#addDepartAssessFormButtons {
+    width: 400px;
+}
+
+#addDepartAssessFormButtons button {
+    width: 150px;
+}
+
+.costTableRow td input[type="text"], .costTableRow td select, .mhTableRow td input[type="text"], .mhTableRow td input[type="number"], .mhTableRow td input[type="text"] {
+    background-color: transparent;
+    color: black;
+    border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-align: center;
+}
+
+/*Add requirement modal style*/
+
+#addRequirementForm {
+    width: 600px;
+    height: 250px;
+}
+
+#addRequirementFormHeader {
+    width: 500px;
+    /*font-size: 25px;*/
+}
+
+#addRequirementFormBody {
+    margin: 20px;
+    width: 500px;
+}
+
+#addRequirementFormBody label {
+    margin: 5px;
+}
+
+#addRequirementFormButtons {
+    width: 500px;
+}
+
+#addRequirementFormButtons button {
+    width: 220px;
+}

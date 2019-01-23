@@ -1,0 +1,237 @@
+html{
+    font-family: Verdana;
+}
+
+#bodyId {
+    background-color: #ffffff;
+    width: auto;
+    margin: auto;
+}
+
+.heroImg {
+    position: relative;
+    top: -60px;
+    background-image: url("../heroIMG.jpg");
+    background-size: 100% 550px;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    width: auto;
+    height: 400px;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    z-index: -2;
+}
+
+.heroImg .gradientBgd {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(255, 255, 255, 0.0) 90%, #dfdfdf);
+    z-index: -1;
+}
+
+.bcgd {
+    position: relative;
+    top: -60px;
+    width: auto;
+    height: auto;
+    background: linear-gradient(#dfdfdf, #ffffff);
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+#headerID {
+    background-color: rgba(255, 255, 255, 0.3);
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 0px;
+    z-index: 0;
+}
+
+.mainNavClass:hover {
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+
+}
+
+.mainNavClass {
+    margin: auto 0px;
+    font-size: 25px;
+    font-family: Verdana;
+}
+
+#mainNav01Id {
+    width: 200px;
+}
+
+#mainNav02Id {
+    width: 300px;
+}
+
+#mainNav03Id {
+    width: 200px;
+}
+
+#mainNav04Id {
+    width: 250px;
+}
+
+#mainNav01Id:before {
+    content: url("../home.png");
+    margin: 0px 10px 0px 0px;
+}
+
+#mainNav02Id:before {
+    content: url("../help.png");
+    margin: 0px 10px 0px 0px;
+}
+
+#mainNav03Id:before {
+    content: url("../user.png");
+    margin: 0px 10px 0px 0px;
+}
+
+#mainNav04Id:before {
+    content: url("../logout.png");
+    margin: 0px 10px 0px 0px;
+}
+
+#tableHeader {
+    background-color: #2d2d2d;
+    color: #e8e8e8;
+}
+
+#tableHeader tr td {
+    border-width: 0px;
+    margin: 0 0 0 0;
+    padding: 5px 10px;
+}
+
+#assessmentList {
+    border-collapse: collapse;
+    margin: auto;
+    font-family: Verdana;
+    text-align: center;
+}
+
+#tableBody tr td a button {
+    background-color: #2d2d2d;
+    color: #e8e8e8;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    width: 100px;
+}
+
+.statusCol {
+    width: 120px;
+}
+
+#tableBody tr:nth-child(even) {
+    background-color: #d9d9d9;
+}
+
+#tableBody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+#tableBody tr:hover {
+    background-color: #bddbbd;
+}
+
+.nonVisibleElement{
+    display: none;
+}
+
+/* modalBox style pattern class */
+.modalBoxBasic {
+    position: fixed;
+    top: 0px;
+    display: none;
+    margin: auto;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: scroll;
+}
+
+.modalInnerBox {
+    height: auto;
+    position: relative;
+    padding: 20px 0px;
+    margin: 100px auto;
+    background-color: rgb(130, 224, 130);
+    border-radius: 10px;
+    justify-content: center;
+}
+
+.modalInnerBoxHeader {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 30px;
+    color: rgb(255, 255, 255);
+    background-color: #2d2d2d;
+    margin: 20px 0 0px 0;
+    padding: 5px 0px;
+    border-radius: 7px;
+    text-align: center;
+}
+
+.modalButtonBox {
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.modalButtonBox button, .modalInnerBox button {
+    font-weight: bold;
+    text-align: center;
+    padding: 5px 0px;
+    color: rgb(255, 255, 255);
+    background-color: #2d2d2d;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
+.modalInnerBox button:hover{
+    background-color: rgba(55, 55, 55, 1);
+    color: tomato;
+}
+
+.modalButtonBox button:hover {
+    background-color: rgba(55, 55, 55, 1);
+    box-shadow: 3px 3px 2px rgb(35, 35, 35);
+}
+
+.modalInnerBox select,
+.modalInnerBox input,
+.modalInnerBox textarea{
+    width: 100%;
+    height: 30px;
+    border-radius: 7px;
+}
+
+.flexColumnCenter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flexRowCenter {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}

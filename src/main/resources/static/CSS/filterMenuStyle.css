@@ -1,0 +1,245 @@
+#mainBackground{
+    width: 100%;
+    height: 1200px;
+    background-color: lightblue;
+    margin: auto;
+}
+
+#hoverSection1, #hoverSection2{
+    display: flex;
+    position: fixed;
+    height: 300px;
+    width: 30px;
+    transition: all 1.5s ease;
+    border-radius: 5px;
+
+    overflow: hidden;
+    font-family:Verdana;
+}
+
+.hoverSectionRight{
+    top: 150px;
+    right: 0px;
+    background-color: rgb(82, 224, 82);
+}
+.hoverSectionLeft{
+    top: 150px;
+    left: 0px;
+    background-color: rgb(55, 55, 55);
+}
+
+
+#filterCard{
+    width: 400px;
+    height: auto;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 1s ease;
+}
+
+#cardName{
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    align-self: center;
+    margin:3px 0px 3px 3px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.closeWin{
+    dispaly: flex;
+    align-self: flex-end;
+    font-family:Verdana;
+    font-size: 12px;
+    margin: 5px;
+    background-color: #2d2d2d;
+    color: red;
+    font-weight: bold;
+    padding: 0 3px 1px 3px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.closeWin span{
+    padding: 0px 0px 0px 5px;
+    font-size: 9px;
+    position: relative;
+    top: -0.5px;
+    font-weight: normal;
+    color: white;
+}
+#filterHeader{
+    width: 320px;
+    padding: 7px 0 7px 0;
+    font-size: 20px;
+    background-color: #2d2d2d;
+    border-width: 1px;
+    text-align: center;
+    color: white;
+    border-radius: 5px;
+}
+
+#fiterForm{
+    margin-top: 20px;
+    width: 335px;
+    height: 50px;
+}
+
+#searchBox{
+    margin: 0 0 0 20px;
+    padding: 2px 0px 2px 30px;
+    border-style:solid;
+    border-color:#2d2d2d;
+    border-width: 2px 0 2px 2px;
+    border-radius: 5px 0 0 5px;
+    background-image: url(https://png.icons8.com/metro/1600/search.png);
+    background-position: 5px 3px;
+    background-size: 18px 18px;
+    background-repeat: no-repeat;
+    height: 23px;
+    width: 200px;
+    display: inline;
+}
+
+#selectStatus, #selectCooperation{
+    margin: 0px 0 0 20px;
+    height: 31px;
+    width: 232px;
+    border-style:solid;
+    border-color:#2d2d2d;
+    border-width: 2px 0 2px 2px;
+    border-radius: 5px 0 0 5px;
+    padding: 3px 0px 3px 5px;
+    display: none;
+}
+#labelDateDiv{
+    width: 200px;
+    text-align: center;
+
+}
+
+#dateRange{
+    display: none;
+    margin: 0 0 0 20px;
+}
+
+.zbiorczyInput{
+    margin: 0 0 0 20px;
+    border-style:solid;
+    border-color:#2d2d2d;
+    border-width: 2px 0 2px 2px;
+}
+
+#startDate, #endDate{
+    height: 23px;
+    margin: 0;
+    padding: 0;
+    width: 109px;
+    border-style:solid;
+    border-color:#2d2d2d;
+    padding: 2px 0px 2px 0px;
+}
+
+#startDate{
+    border-radius: 5px 0 0 5px;
+}
+
+#searchBtn{
+    margin: 0 0 0 0;
+    padding: 8px 10px 8px 10px;
+    cursor: pointer;
+    border: none;
+    position: relative;
+    left: -6px;
+    top: 0px;
+    color: white;
+    background-color: #2d2d2d;
+    border-radius: 0 5px 5px 0;
+}
+
+#parameterFiltering{
+    display: flex;
+    flex-direction: row;
+    width: 300px;
+    margin-bottom: 15px;
+}
+
+#parameterFiltering label{
+    display:inline-block;
+    width: 150px;
+    height: 20px;
+    padding-left:5px;
+    padding-bottom: 5px;
+    font-size: 10px;
+}
+
+#parameterFiltering input{
+    margin: 5px;
+    position: relative;
+    top: 3px;
+}
+
+#filterContainer, #sideManagerCard{
+    display: flex;
+    flex-direction: column;
+    top: 200px;
+    align-self: center;
+    margin: 10px auto;
+}
+
+#filterContainer a, .hyperlinkTail{
+    display: inline-flex;
+    justify-content: space-between;
+    background-color: #2d2d2d;
+    background-clip: padding-box;
+    margin-bottom: 10px;
+    padding: 5px;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+
+#filterContainer span:nth-child(odd){
+    margin: 0 0 0 0;
+    position: relative;
+    font-size: 12px;
+    padding: 2px;
+    font-weight: bold;
+    color: red;
+}
+#filterContainer span:nth-child(even){
+    position: relative;
+    top:-1px;
+    color: red;
+    font-weight: bold;
+    padding: 0px 0px 0px 5px;
+    display: inline-flex;
+    align-self: flex-end;
+}
+
+#filterContainer a:hover, .hyperlinkTail:hover{
+    background-color: #424242;
+    box-shadow: 3px 3px 5px #2d2d2d;
+}
+
+#clearAll{
+    display: inline-flex;
+    justify-content: space-between;
+    background-color: #2d2d2d;
+    background-clip: padding-box;
+    margin-bottom: 10px;
+    padding: 3px;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+#clearAll:hover{
+    background-color: #424242;
+    box-shadow: 3px 3px 5px #2d2d2d;
+}
