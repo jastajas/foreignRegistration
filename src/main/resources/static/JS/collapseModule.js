@@ -21,7 +21,9 @@
     if (null != document.getElementById("closeRequirementFormBtn")) {
         document.getElementById("closeRequirementFormBtn").addEventListener("click", closeRequirementForm);
     }
-
+    if (null != document.getElementById("closeAddAssessSubjectBtn")) {
+        document.getElementById("closeAddAssessSubjectBtn").addEventListener("click", closeAddAssessSubjectForm);
+    }
 })();
 
 /** method for closing departments assessment of dossier form. At first form is hidden. Then all added elements (costs and man-hours) are
@@ -259,9 +261,17 @@ function closeRequirementForm() {
 }
 
 
-function addAssessmentSubject() {
-    document.getElementById("addAssessSubjForm").style.display = "flex";
+function showAddAssessmentSubjectForm() {
+    document.getElementById("addAssessSubjectFormBckgd").style.display = "block";
 
+}
+
+function closeAddAssessSubjectForm() {
+    if (document.getElementById("addAssessSubjectFormBckgd").style.display == "block") {
+        document.getElementById("addAssessSubjectFormSubject").value = "";
+        document.getElementById("addAssessSubjectFormDepart").value = "";
+        document.getElementById("addAssessSubjectFormBckgd").style.display = "none";
+    }
 }
 
 function changeAvailability(fieldName, btnName, objectType, objectId) {
@@ -295,13 +305,13 @@ function showCheckboxSet(fieldsName, btnName, objectType, objectId, visibleDiv, 
 function changeAssessmentDetailCheckBox(fieldsName, btnName, objectType, objectId, visibleDiv, hiddenDiv) {
     var paramName = document.getElementsByName(fieldsName);
     var valuesDossier = [];
-    alert(valuesDossier);
+    //alert(valuesDossier);
     for (var i = 0; i < paramName.length; i++) {
         if (paramName[i].checked) {
             valuesDossier.push(paramName[i].value);
         }
     }
-    alert(valuesDossier);
+    //alert(valuesDossier);
     var urlAPI = "http://localhost:8080/api/" + objectType + "/" + fieldsName + "/" + objectId;
     var token = document.getElementsByName("_csrf")[0].content;
     var header = document.getElementsByName("_csrf_header")[0].content;
@@ -434,8 +444,4 @@ function makeAllInputsEnable(tablesIdList) {
             }
         }
     }
-}
-
-function closePopWin() {
-    document.getElementById("addAssessSubjForm").style.display = "none";
 }

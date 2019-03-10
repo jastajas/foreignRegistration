@@ -1,6 +1,7 @@
 package com.example.foreign_registration.model.assessment;
 
 import com.example.foreign_registration.model.app.*;
+import com.example.foreign_registration.model.calculation.Calculation;
 import com.example.foreign_registration.model.process.Process;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -57,6 +58,9 @@ public class Assessment {
     @JsonIgnore
     private List<DepartmentAssessment> departmentAssessments;
 
+    @OneToMany(mappedBy = "assessment")
+    private List<Calculation> calculationList;
+
     private boolean s_module;
     private boolean clinical_module;
     private boolean nonclinical_module;
@@ -70,7 +74,8 @@ public class Assessment {
                       List<Requirement> requirements,
                       List<PackageSize> package_sizes, List<AssessDepartConfirmation> assessDepartConfirmations,
                       User ordering_person, Status status, Date order_date, List<Process> processes,
-                      List<DepartmentAssessment> departmentAssessments, boolean s_module, boolean clinical_module,
+                      List<DepartmentAssessment> departmentAssessments, List<Calculation> calculationList,
+                      boolean s_module, boolean clinical_module,
                       boolean nonclinical_module, boolean quality_module) {
         this.assessmentNo = assessmentNo;
         this.registration_country = registration_country;
@@ -89,6 +94,7 @@ public class Assessment {
         this.clinical_module = clinical_module;
         this.nonclinical_module = nonclinical_module;
         this.quality_module = quality_module;
+        this.calculationList = calculationList;
     }
 
     public Assessment(String assessmentNo, Country registration_country, ProductStatus destined_product_status, AvailabilityStatus availability_status, ProductQualification required_prod_qualification, User ordering_person, Status status, Date order_date) {
@@ -262,4 +268,5 @@ public class Assessment {
             this.requirements.add(regitrationRequirement);
         }
     }
+
 }

@@ -260,7 +260,6 @@ public class AssessmentController {
         List<AssessmentCostMH> assessmentCostList = departAssessment.get().getAssessmentCostMHs().stream().filter(assessmentCostMH -> 0 != assessmentCostMH.getCost()).collect(Collectors.toList());
         List<AssessmentCostMH> assessmentMHList = departAssessment.get().getAssessmentCostMHs().stream().filter(assessmentCostMH -> 0 != assessmentCostMH.getMh()).collect(Collectors.toList());
 
-
         if (assessmentCostList.size() > 0 && costValue != null && costCurrency != null && costSubject != null) {
             if (costValue.length == costSubject.length && costValue.length == costCurrency.length) {
                 int maxIterator = assessmentCostList.size() >= costValue.length ? assessmentCostList.size() : costValue.length;

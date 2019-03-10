@@ -5,6 +5,7 @@ import com.example.foreign_registration.model.process.Process;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Product {
@@ -91,5 +92,23 @@ public class Product {
 
     public void setProcesses(List<Process> processes) {
         this.processes = processes;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Objects.equals(id, product.id) &&
+                Objects.equals(name, product.name) &&
+                Objects.equals(drug_form, product.drug_form) &&
+                Objects.equals(technological_code, product.technological_code) &&
+                Objects.equals(item_no, product.item_no) &&
+                Objects.equals(product_status, product.product_status);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, drug_form, technological_code, item_no, product_status);
     }
 }

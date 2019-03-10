@@ -1,3 +1,10 @@
+/*collapse module */
+#collapseDiv {
+    width: 1000px;
+    margin: auto;
+    position: relative;
+    top: -100px;
+}
 
 .collapseBar {
     height: 40px;
@@ -47,14 +54,15 @@
     border-radius: 0px 0px 6px 6px;
 }
 
+#magicBox1, #magicBox2, #magicBox3, #magicBox4 {
+    overflow: hidden;
+}
+
 #magicBox1,
 #magicBox2 {
     display: flex;
     flex-direction: column;
-}
-
-#magicBox1, #magicBox2, #magicBox3, #magicBox4 {
-    overflow: hidden;
+    width: 100%;
 }
 
 #magicBox3 {
@@ -65,21 +73,103 @@
     width: 100%;
 }
 
-.tailsContainer{
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    align-items: center;
-}
-
 #magicBox4 {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#magicBox2 {
+/*module1 collapse*/
+.defaultFormField {
     width: 100%;
+    border: none;
+    background-color: transparent;
+    color: black;
+    font-family: Verdana;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/*module2 collapse*/
+#magicBox2 table thead {
+    background-color: rgb(70, 185, 70);
+}
+
+#magicBox2 table thead tr th:first-child {
+    width: 100px;
+}
+
+#magicBox2 table tbody tr td {
+    font-size: 12px;
+}
+
+#magicBox2 table tbody tr td:nth-child(1) {
+    width: 25%;
+}
+
+#magicBox2 table tbody tr td:nth-child(2) {
+    width: 25%;
+}
+
+#magicBox2 table tbody tr td:nth-child(3) ul {
+    list-style-type: none;
+}
+
+#magicBox2 table tbody tr td:nth-child(3) ul li {
+    margin: 5px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+#magicBox2 table tbody tr td:nth-child(4) ul {
+    list-style-type: none;
+}
+
+#magicBox2 table tbody tr td:nth-child(4) ul li {
+    margin: 5px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+#magicBox2 table thead tr th {
+    font-size: 12px;
+}
+
+.editButtonCol button, .editButtonCol input[type=submit] {
+    color: white;
+    border-radius: 3px;
+    border: none;
+    background-color: rgb(26, 26, 26);
+    cursor: pointer;
+    padding: 1px 4px;
+    margin: 1px;
+    font-size: 12px;
+}
+
+/*module3 collapse*/
+#addAssessmentSubj {
+    display: flex;
+    justify-content: center;
+}
+
+#addAssessmentSubj p {
+    font-size: 30px;
+    margin: 0px;
+    padding: 0px;
+    font-family: Verdana;
+}
+
+.departAssessTail:hover {
+    background-color: rgba(126, 206, 126, 0.6);
+}
+
+/*module4 collapse*/
+
+.tailsContainer {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
 }
 
 #magicBox1 table,
@@ -101,55 +191,6 @@
     background-color: rgb(200, 234, 200);
 }
 
-#magicBox2 table thead {
-    background-color: rgb(70, 185, 70);
-}
-
-#magicBox2 table thead tr th:first-child {
-    width: 100px;
-}
-
-#magicBox2 table tbody tr td{
-    font-size: 12px;
-}
-#magicBox2 table tbody tr td:nth-child(1){
-    width: 25%;
-}
-#magicBox2 table tbody tr td:nth-child(2){
-    width: 25%;
-}
-#magicBox2 table tbody tr td:nth-child(3) ul{
-    list-style-type: none;
-}
-#magicBox2 table tbody tr td:nth-child(3) ul li{
-    margin: 5px;
-    margin-bottom: 10px;
-    margin-top: 10px;
-}
-#magicBox2 table tbody tr td:nth-child(4) ul{
-    list-style-type: none;
-}
-#magicBox2 table tbody tr td:nth-child(4) ul li{
-    margin: 5px;
-    margin-bottom: 10px;
-    margin-top: 10px;
-}
-
-#magicBox2 table thead tr th {
-    font-size: 12px;
-}
-
-.editButtonCol button, .editButtonCol input[type=submit] {
-    color: white;
-    border-radius: 3px;
-    border: none;
-    background-color: rgb(26, 26, 26);
-    cursor: pointer;
-    padding: 1px 4px;
-    margin: 1px;
-    font-size: 12px;
-}
-
 .assessmentDetKey {
     width: auto;
     max-width: 200px;
@@ -160,12 +201,12 @@
     text-transform: uppercase;
 }
 
-.assessmentDetValue{
+.assessmentDetValue {
     width: auto;
     padding: 2px 4px;
 }
 
-.assessmentDetValue, .assessmentDetValue select, .assessmentDetValue input{
+.assessmentDetValue, .assessmentDetValue select, .assessmentDetValue input {
     font-style: italic;
     font-size: 14px;
 }
@@ -182,182 +223,6 @@
     cursor: pointer;
     font-family: Verdana;
     font-size: 12px;
-}
-
-#addAssessmentSubj {
-    display: flex;
-    justify-content: center;
-
-}
-
-#addAssessmentSubj p {
-    font-size: 30px;
-    margin: 0px;
-    padding: 0px;
-    font-family: Verdana;
-}
-
-.departAssessTail:hover {
-    background-color: rgba(126, 206, 126, 0.6);
-}
-
-#departAssessForm {
-    margin: 50px auto;
-    display: block;
-    width: 350px;
-    height: auto;
-    background-color: rgba(82, 224, 82, 1);
-    font-size: 14px;
-    padding: 20px 0;
-}
-
-#addAssessSubjForm {
-    position: fixed;
-    left: 50%;
-    top: 0%;
-    transform: translate(-50%, 0%);
-    z-index: 100;
-    align-self: center;
-    margin: 0px auto;
-    display: none;
-    flex-flow: column nowrap;
-    width: 350px;
-    height: auto;
-    background-color: rgba(82, 224, 82, 1);
-    font-family: Verdana;
-    font-size: 14px;
-    border-width: 50px 500px 500px 500px;
-    border-style: solid;
-    border-color: rgba(0, 0, 0, 0.4);
-    background-clip: padding-box;
-    padding: 20px 0;
-}
-
-#departAssessFormTitle, #addAssessSubjFormTitle {
-    display: flex;
-    align-self: center;
-    margin: 10px;
-    text-align: center;
-}
-
-#departAssessFormText, #addAssessSubjFormText {
-    margin: 5px auto;
-    border: none;
-    color: black;
-    border-width: 0px;
-    font-family: Verdana;
-    font-size: 15px;
-    width: 99%;
-    resize: vertical;
-    height: auto;
-    min-height: 50px;
-    overflow: hidden;
-}
-
-.assessFormClass {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 10px 0px;
-}
-
-.assessFormClass label {
-    font-size: 12px;
-    padding: 0px 5px;
-}
-
-#amountInputAssess {
-    width: 120px;
-}
-
-#currencySelectAssess {
-    width: 65px;
-    padding: 1px 2px;
-}
-
-#subjectDepatrmentSelect {
-    width: 120px;
-    padding: 1px 2px;
-}
-
-#costCatcherTable {
-    width: 98%;
-    height: auto;
-    display: none;
-}
-
-#costCatcherTable table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-#costCatcherTable table thead {
-    background-color: rgb(70, 185, 70);
-}
-
-#costCatcherTable table thead tr th {
-    margin: 0 0 0 0;
-    border-width: 0px;
-    text-align: center;
-}
-
-#costCatcherTable table tbody tr:nth-child(even) {
-    background-color: rgb(163, 220, 163);
-}
-
-#costCatcherTable table tbody tr:nth-child(odd) {
-    background-color: rgb(126, 206, 126);
-}
-
-.lpCostCol {
-    width: 30px;
-    text-align: center;
-    font-size: 10px;
-}
-
-.removeCostCol {
-    width: 100px;
-}
-
-.costAmountCol {
-    width: 60px;
-    font-size: 10px;
-}
-
-.currAmountCol {
-    width: 40px;
-    font-size: 10px;
-}
-
-#costCatcherTable table tbody tr td button {
-    background-color: #2d2d2d;
-    color: #e8e8e8;
-    border: none;
-    cursor: pointer;
-    padding: 5px;
-    width: 70px;
-    position: relative;
-    margin: 0px 0px 0px 0px;
-    right: -18px;
-}
-
-.lpCostCol {
-    text-align: center;
-}
-
-.costInput {
-    background-color: transparent;
-    color: black;
-    border: none;
-    text-align: center;
-}
-
-.currencyInput {
-    width: 60px;
-    background-color: transparent;
-    color: black;
-    border: none;
-    text-align: center;
 }
 
 .requirementBox {
@@ -410,74 +275,7 @@
     font-family: Verdana;
 }
 
-/*#addReqFormId {*/
-    /*position: fixed;*/
-    /*left: 50%;*/
-    /*top: 20%;*/
-    /*transform: translate(-50%, 0%);*/
-    /*z-index: 100;*/
-    /*align-self: center;*/
-    /*margin: 0px auto;*/
-    /*display: none;*/
-    /*flex-flow: column nowrap;*/
-    /*width: 350px;*/
-    /*height: auto;*/
-    /*background-color: rgba(82, 224, 82, 1);*/
-    /*border-radius: 7px;*/
-    /*font-family: Verdana;*/
-    /*font-size: 14px;*/
-    /*border-width: 50px 500px 500px 500px;*/
-    /*border-style: solid;*/
-    /*border-color: rgba(0, 0, 0, 0.4);*/
-    /*background-clip: padding-box;*/
-    /*padding: 20px 0;*/
-/*}*/
-
-/*#addReqFormId label {*/
-    /*align-self: center;*/
-    /*margin: 5px;*/
-    /*font-weight: bold;*/
-/*}*/
-
-/*#addReqFormId input {*/
-    /*margin: 10px 0px;*/
-/*}*/
-
-/*#addReqFormId input[type=submit], */
-#departAssessForm input[type=submit],
-#addAssessSubjForm input[type=submit] {
-    background-color: rgb(26, 26, 26);
-    border: none;
-    color: red;
-    cursor: pointer;
-    font-family: Verdana;
-    font-size: 14px;
-    font-weight: bold;
-    padding: 3px 0px;
-}
-
-/*#addReqFormId input[type=submit]:hover, */
-#departAssessForm input[type=submit]:hover {
-    background-color: rgba(26, 26, 26, 0.9);
-}
-
-#collapseDiv {
-    width: 1000px;
-    margin: auto;
-    position: relative;
-    top: -100px;
-}
-
-.defaultFormField {
-    width: 100%;
-    border: none;
-    background-color: transparent;
-    color: black;
-    font-family: Verdana;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-}
-.dossierTail{
+.dossierTail {
     padding: 0px 10px;
 }
 
@@ -583,5 +381,34 @@
 }
 
 #addRequirementFormButtons button {
+    width: 220px;
+}
+
+/*Add Assessment Subject modal subject*/
+
+#addAssessSubjectForm {
+    width: 600px;
+    height: auto;
+}
+
+#addAssessSubjectFormHeader {
+    width: 500px;
+    /*font-size: 25px;*/
+}
+
+#addAssessSubjectFormBody {
+    margin: 20px;
+    width: 500px;
+}
+
+#addAssessSubjectFormBody label {
+    margin: 5px;
+}
+
+#addAssessSubjectFormButtons {
+    width: 500px;
+}
+
+#addAssessSubjectFormButtons button {
     width: 220px;
 }

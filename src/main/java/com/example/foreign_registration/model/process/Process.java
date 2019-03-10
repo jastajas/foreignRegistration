@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Process {
@@ -19,8 +20,8 @@ public class Process {
 
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(name = "process_assessment",
-    joinColumns={@JoinColumn(name = "process_id")},
-    inverseJoinColumns = {@JoinColumn(name = "assessment_id")})
+            joinColumns = {@JoinColumn(name = "process_id")},
+            inverseJoinColumns = {@JoinColumn(name = "assessment_id")})
     @JsonIgnore
     private List<Assessment> assessments;
 
@@ -61,11 +62,14 @@ public class Process {
     private ModelCooperation model_cooperation;
 
     private Date order_date;
+    @JsonIgnore
+    @OneToMany(mappedBy = "process")
+    private List<Task> taskList;
 
     public Process() {
     }
 
-    public Process(String orderNo, List<Assessment> assessments, Product product, String destined_product_name, ProductQualification product_qualification, long one_order_amount, Unit one_order_unit, long annual_order_amount, Unit annual_order_unit, String contact_person_name, String contact_person_data, String agency_adress, Status status, Client client, User order_owner, ModelCooperation model_cooperation, Date order_date) {
+    public Process(String orderNo, List<Assessment> assessments, Product product, String destined_product_name, ProductQualification product_qualification, long one_order_amount, Unit one_order_unit, long annual_order_amount, Unit annual_order_unit, String contact_person_name, String contact_person_data, String agency_adress, Status status, Client client, User order_owner, ModelCooperation model_cooperation, Date order_date, List<Task> taskList) {
         this.orderNo = orderNo;
         this.assessments = assessments;
         this.product = product;
@@ -83,6 +87,7 @@ public class Process {
         this.order_owner = order_owner;
         this.model_cooperation = model_cooperation;
         this.order_date = order_date;
+        this.taskList = taskList;
     }
 
     public Process(String orderNo, Product product, String destined_product_name, ProductQualification product_qualification, Status status, Client client, User order_owner, ModelCooperation model_cooperation, Date order_date) {
@@ -239,5 +244,42 @@ public class Process {
 
     public void setOrder_date(Date order_date) {
         this.order_date = order_date;
+    }
+
+    public List<Task> getTaskList() {
+        return taskList;
+    }
+
+    public void setTaskList(List<Task> taskList) {
+        this.taskList = taskList;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Process process = (Process) o;
+        return id == process.id &&
+                one_order_amount == process.one_order_amount &&
+                annual_order_amount == process.annual_order_amount &&
+                Objects.equals(orderNo, process.orderNo) &&
+                Objects.equals(product, process.product) &&
+                Objects.equals(destined_product_name, process.destined_product_name) &&
+                Objects.equals(product_qualification, process.product_qualification) &&
+                Objects.equals(one_order_unit, process.one_order_unit) &&
+                Objects.equals(annual_order_unit, process.annual_order_unit) &&
+                Objects.equals(contact_person_name, process.contact_person_name) &&
+                Objects.equals(contact_person_data, process.contact_person_data) &&
+                Objects.equals(agency_adress, process.agency_adress) &&
+                Objects.equals(status, process.status) &&
+                Objects.equals(client, process.client) &&
+                Objects.equals(order_owner, process.order_owner) &&
+                model_cooperation == process.model_cooperation &&
+                Objects.equals(order_date, process.order_date);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, orderNo, product, destined_product_name, product_qualification, one_order_amount, one_order_unit, annual_order_amount, annual_order_unit, contact_person_name, contact_person_data, agency_adress, status, client, order_owner, model_cooperation, order_date);
     }
 }

@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.example.foreign_registration.model.process.Process;
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class User {
@@ -41,6 +42,8 @@ public class User {
     @OneToMany(mappedBy = "order_owner")
     @JsonIgnore
     private List<Process> processes;
+
+    //todo zakotwiczyć taski i json ignore
 
     public User(String name, String surname, String username, String password, Boolean enabled, Position position, Department department, List<Assessment> assessments, List<DepartmentAssessment> departmentAssessments, List<Process> processes) {
         this.name = name;
@@ -144,5 +147,25 @@ public class User {
 
     public void setProcesses(List<Process> processes) {
         this.processes = processes;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) &&
+                Objects.equals(name, user.name) &&
+                Objects.equals(surname, user.surname) &&
+                Objects.equals(username, user.username) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(enabled, user.enabled) &&
+                Objects.equals(position, user.position) &&
+                Objects.equals(department, user.department);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, surname, username, password, enabled, position, department);
     }
 }

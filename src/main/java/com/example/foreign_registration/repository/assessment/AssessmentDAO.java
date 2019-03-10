@@ -21,7 +21,7 @@ public class AssessmentDAO {
         EntityManager em = emFactory.createEntityManager();
         em.getTransaction().begin();
         TypedQuery<Assessment> typedQueryAssessmets = em.createQuery(preparedQuery, Assessment.class);
-        System.out.println(typedQueryAssessmets.getResultList().size());
+        //System.out.println(typedQueryAssessmets.getResultList().size());
        // em.close();
        // emFactory.close();
         return typedQueryAssessmets.getResultList();

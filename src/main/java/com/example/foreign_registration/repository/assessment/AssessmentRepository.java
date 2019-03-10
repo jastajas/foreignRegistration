@@ -1,6 +1,7 @@
 package com.example.foreign_registration.repository.assessment;
 
 import com.example.foreign_registration.model.assessment.Assessment;
+import com.example.foreign_registration.model.process.Process;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -47,5 +48,9 @@ public interface AssessmentRepository extends JpaRepository<Assessment, Long> {
 
     @Query("SELECT COUNT(a) FROM Assessment a")
     public Long getCountAllRows();
+
+    @Query("SELECT a FROM Assessment a LEFT JOIN a.processes p WHERE p = :selectedProcess")
+    public List<Assessment> getAllBySelectedProcess (@Param("selectedProcess") Process selectedProcess);
+
 
 }

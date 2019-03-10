@@ -1,8 +1,10 @@
 package com.example.foreign_registration.model.assessment;
 
 import com.example.foreign_registration.model.app.Unit;
+import com.example.foreign_registration.model.calculation.CalculationAssumptions;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class PackageSize {
@@ -11,6 +13,7 @@ public class PackageSize {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(scale = 2)
     private double size;
 
     @ManyToOne
@@ -18,6 +21,9 @@ public class PackageSize {
 
     @ManyToOne
     private Assessment assessment;
+
+    @OneToMany(mappedBy = "packageSize")
+    private List<CalculationAssumptions> calculationAssumptions;
 
     public PackageSize(double size, Unit unit, Assessment assessment) {
         this.size = size;

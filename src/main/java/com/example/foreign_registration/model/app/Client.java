@@ -5,6 +5,7 @@ import com.example.foreign_registration.model.process.Process;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Client {
@@ -60,5 +61,20 @@ public class Client {
 
     public void setProcesses(List<Process> processes) {
         this.processes = processes;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Client client = (Client) o;
+        return id == client.id &&
+                Objects.equals(name, client.name) &&
+                Objects.equals(adress, client.adress);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, adress);
     }
 }

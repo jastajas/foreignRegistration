@@ -3,10 +3,13 @@ package com.example.foreign_registration.model.app;
 import com.example.foreign_registration.model.assessment.AssessDepartConfirmation;
 import com.example.foreign_registration.model.assessment.AssessmentPattern;
 import com.example.foreign_registration.model.assessment.DepartmentAssessment;
+import com.example.foreign_registration.model.calculation.CalculationAssumptions;
+import com.example.foreign_registration.model.calculation.DepartmentRate;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Department {
@@ -28,20 +31,32 @@ public class Department {
     @OneToMany(mappedBy = "department")
     @JsonIgnore
     private List<AssessDepartConfirmation> assessDepartConfirmations;
-    
+
     @OneToMany(mappedBy = "other_subject_department")
     @JsonIgnore
     private List<DepartmentAssessment> departmentAssessments;
 
-    public Department(String name, List<User> users, List<AssessmentPattern> assessmentPatterns, List<AssessDepartConfirmation> assessDepartConfirmations, List<DepartmentAssessment> departmentAssessments) {
+    @OneToMany(mappedBy = "department")
+    @JsonIgnore
+    private List<DepartmentRate> departmentRates;
+
+    @OneToMany(mappedBy = "department")
+    @JsonIgnore
+    private List<CalculationAssumptions> calculationAssumptions;
+
+    public Department() {
+    }
+
+    public Department(String name, List<User> users, List<AssessmentPattern> assessmentPatterns,
+                      List<AssessDepartConfirmation> assessDepartConfirmations, List<DepartmentAssessment> departmentAssessments,
+                      List<DepartmentRate> departmentRates, List<CalculationAssumptions> calculationAssumptions) {
         this.name = name;
         this.users = users;
         this.assessmentPatterns = assessmentPatterns;
         this.assessDepartConfirmations = assessDepartConfirmations;
         this.departmentAssessments = departmentAssessments;
-    }
-
-    public Department() {
+        this.departmentRates = departmentRates;
+        this.calculationAssumptions = calculationAssumptions;
     }
 
     public Long getId() {
@@ -84,13 +99,27 @@ public class Department {
         this.assessDepartConfirmations = assessDepartConfirmations;
     }
 
-	public List<DepartmentAssessment> getDepartmentAssessments() {
-		return departmentAssessments;
-	}
+    public List<DepartmentAssessment> getDepartmentAssessments() {
+        return departmentAssessments;
+    }
 
-	public void setDepartmentAssessments(List<DepartmentAssessment> departmentAssessments) {
-		this.departmentAssessments = departmentAssessments;
-	}
-    
-    
+    public void setDepartmentAssessments(List<DepartmentAssessment> departmentAssessments) {
+        this.departmentAssessments = departmentAssessments;
+    }
+
+    public List<DepartmentRate> getDepartmentRates() {
+        return departmentRates;
+    }
+
+    public void setDepartmentRates(List<DepartmentRate> departmentRates) {
+        this.departmentRates = departmentRates;
+    }
+
+    public List<CalculationAssumptions> getCalculationAssumptions() {
+        return calculationAssumptions;
+    }
+
+    public void setCalculationAssumptions(List<CalculationAssumptions> calculationAssumptions) {
+        this.calculationAssumptions = calculationAssumptions;
+    }
 }

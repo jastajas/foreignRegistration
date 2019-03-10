@@ -22,7 +22,7 @@ public class DynamicSqlSyntaxBuilder {
 
         Set<String> filters = parameters.keySet();
 
-        String syntax = "SELECT a FROM Assessment a " +
+        String syntax = "SELECT DISTINCT a FROM Assessment a " +
                 "LEFT JOIN a.processes p " +
                 "LEFT JOIN p.product pr " +
                 "LEFT JOIN pr.product_status ps " +
@@ -53,10 +53,10 @@ public class DynamicSqlSyntaxBuilder {
                     stringBuilder.append(" p.destined_product_name");
                     break;
                 case "byOrder":
-                    stringBuilder.append(" p.order_no");
+                    stringBuilder.append(" p.orderNo");
                     break;
                 case "byAssessment":
-                    stringBuilder.append(" a.assessment_no");
+                    stringBuilder.append(" a.assessmentNo");
                     break;
                 case "byStatus":
                     stringBuilder.append(" s.id = ");
@@ -84,6 +84,7 @@ public class DynamicSqlSyntaxBuilder {
 
             i++;
         }
+        stringBuilder.append(" ORDER BY a.assessmentNo");
 
         System.out.println(stringBuilder.toString());
         return stringBuilder.toString();

@@ -1,4 +1,4 @@
-.collapseBar{
+.collapseBar {
     height: 1000px;
     width: 30px;
     background-color: rgb(26, 26, 26);
@@ -8,7 +8,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    font-family:Verdana;
+    font-family: Verdana;
     font-size: 14px;
     cursor: pointer;
     border-style: solid;
@@ -19,22 +19,27 @@
 .collapseBar:last-of-type {
     border-radius: 12px;
 }
-.collapseBar:hover{
+
+.collapseBar:hover {
     background-color: rgb(51, 51, 51);
     color: red;
 }
-.collapseBar p{
+
+.collapseBar p {
     display: flex;
     writing-mode: tb-rl;
     margin: 15px 0px;
 }
-#collapseDiv1{
+
+#collapseDiv1 {
     width: 100%;
 }
-#collapseDiv2, #collapseDiv3, #collapseDiv4{
+
+#collapseDiv2, #collapseDiv3, #collapseDiv4 {
     width: 0px;
 }
-.collapseDiv{
+
+.collapseDiv {
     height: 1000px;
     margin: 0px;
     transition: all 1s ease;
@@ -42,20 +47,19 @@
     overflow: hidden;
 }
 
-#magicBox1, #magicBox2{
+#magicBox1, #magicBox2 {
     display: flex;
     flex-direction: column;
-
-    width:100%;
+    width: 100%;
     height: 100%;
 }
-#magicBox1{
-    justify-content: flex-start;
 
+#magicBox1 {
+    justify-content: flex-start;
 }
 
 
-#magicBox3, #magicBox4{
+#magicBox4 {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -63,27 +67,36 @@
     width: 100%;
 }
 
+#magicBox3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    background-color: rgb(119, 40, 40);
+    height: 100%;
+    width: 100%;
+    align-items: flex-start;
+}
 
-#magicBox1 table{
-    margin-top:20px;
+#magicBox1 table {
+    margin-top: 20px;
     width: 100%;
     border-collapse: collapse;
     background-color: rgba(255, 255, 255, 0.3);
 }
 
-#magicBox1 table tbody tr{
+#magicBox1 table tbody tr {
     border-bottom: 1px solid rgba(105, 250, 120, 1);
 }
 
-#magicBox1 table tbody tr:hover{
+#magicBox1 table tbody tr:hover {
     background-color: rgb(200, 234, 200);
 }
 
-html{
-    font-family:Verdana;
+html {
+    font-family: Verdana;
 }
 
-.orderDetailKey{
+.orderDetailKey {
     width: auto;
     max-width: 180px;
     padding: 20px 0 20px 0;
@@ -95,27 +108,33 @@ html{
     text-align: center;
 }
 
-.assessmentDetValue{
+.assessmentDetValue, .assessmentDetValue select, .assessmentDetValue input {
+    font-style: italic;
+    font-size: 14px;
+}
+
+.assessmentDetValue {
     width: auto;
     padding: 20px 0 20px 0;
-    font-style: italic;
 }
-.editButtonCol button{
-    background-color: rgb(25,25,25);
+
+.editButtonCol button {
+    background-color: rgb(25, 25, 25);
     border: none;
-    width: 60px;
+    width: 80px;
     padding: 5px 0px;
     color: white;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 2px 2px 2px rgb(105,105,105);
+    box-shadow: 2px 2px 2px rgb(105, 105, 105);
 }
-.editButtonCol button:hover{
+
+.editButtonCol button:hover {
     box-shadow: none;
 }
 
 
-#kanbanMainContainer{
+#kanbanMainContainer {
     height: 70%;
     width: 100%;
     background-color: rgba(105, 100, 120, 1);
@@ -123,7 +142,8 @@ html{
     flex-direction: row;
     justify-content: center;
 }
-#burnOutGraph{
+
+#burnOutGraph {
     height: 30%;
     width: 100%;
     background-color: rgba(200, 100, 120, 1);
@@ -132,11 +152,13 @@ html{
     justify-content: center;
     align-items: center;
 }
-#burnOutGraph svg{
+
+#burnOutGraph svg {
 
 }
-.kanbanBox{
-    width:27%;
+
+.kanbanBox {
+    width: 27%;
     height: 90%;
     margin: 25px;
     background-color: rgba(255, 255, 255, 0.2);
@@ -144,16 +166,18 @@ html{
     flex-direction: column;
     justify-content: flex-start;
 }
-.kanbanBoxHeader{
-    width:100%;
+
+.kanbanBoxHeader {
+    width: 100%;
     height: 5%;
     background-color: rgba(255, 255, 255, 0.2);
     display: flex;
-    font-family:Verdana;
+    font-family: Verdana;
     font-size: 14px;
     justify-content: space-around;
 }
-.kanbanBoxHeader p{
+
+.kanbanBoxHeader p {
     margin: auto 20px auto 40px;
     text-align: center;
     width: 100px;
@@ -163,7 +187,7 @@ html{
     color: rgba(55, 55, 55, 1);
 }
 
-.kanbanBoxHeader div{
+.kanbanBoxHeader div {
     text-align: center;
     width: 30px;
     height: 20px;
@@ -174,7 +198,7 @@ html{
     font-weight: bold;
 }
 
-.kanbanBoxBody{
+.kanbanBoxBody {
     width: 100%;
     height: 95%;
     background-color: rgba(200, 100, 120, 1);
@@ -182,15 +206,16 @@ html{
     flex-direction: column;
     align-items: center;
 }
-.kanbanTail{
+
+/*.kanbanTail{
     width: 90%;
     height: 50px;
     background-color: rgba( 70, 100, 120, 1);
     border-radius: 10px;
     margin-top: 10px;
-}
+}*/
 
-#collapseContainer{
+#collapseContainer {
     margin: auto;
     background-color: rgba(105, 250, 120, 1);
     width: 1200px;
@@ -199,4 +224,294 @@ html{
     flex-wrap: nowrap;
     justify-content: center;
     border-radius: 7px;
+}
+
+.defaultFormField {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    color: black;
+    font-family: Verdana;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* kanban tails style*/
+.kanbanTail {
+    width: 90%;
+    height: auto;
+    background-color: rgba(70, 100, 120, 1);
+    border-radius: 10px;
+    margin-top: 10px;
+    font-size: 12px;
+    cursor: grab;
+}
+
+.kanbanTail p, .kanbanTail div {
+    margin: 5px 10px;
+}
+
+.kanbanTail p {
+    font-weight: bold;
+    text-align: center;
+}
+
+.kanbanTail:active {
+    cursor: grabbing;
+}
+
+/*kanban Task Form style*/
+
+#kanbanForm {
+    width: 600px;
+}
+
+#kanbanFormHeader {
+    width: 500px;
+}
+
+#kanbanFormBody {
+    margin: 20px;
+    width: 500px;
+}
+
+#kanbanFormTaskDescription {
+    resize: vertical;
+    overflow: auto;
+}
+
+#kanbanFormBody label {
+    margin: 20px 0px 5px 0px;
+}
+
+#kanbanFormBody table {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#kanbanFormBody table thead tr th {
+    font-size: 12px;
+    padding: 4px;
+}
+
+#kanbanFormBody table tbody tr td,
+#kanbanFormBody table thead tr th {
+    border-bottom: 2px solid rgb(130, 224, 130);
+}
+
+#kanbanFormBody table tbody tr td input, #kanbanFormBody table tbody tr td select {
+    border: none;
+    height: 25px;
+    margin: 2px;
+    width: 95%;
+}
+
+#kanbanFormBody table tbody tr td select {
+    height: 27px;
+}
+
+.taskRelationTableRow select {
+    background-color: transparent;
+    color: black;
+    border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-align: center;
+}
+
+/*kanban Form buttons*/
+#kanbanFormButtons {
+    width: 500px;
+}
+
+#kanbanFormButtons button {
+    width: 150px;
+}
+
+#kanbanFormBody table tbody tr td:last-of-type {
+    width: 100px;
+}
+
+#kanbanFormBody table tbody tr td button {
+    width: 95%;
+    margin: 2px auto;
+
+}
+
+/* context menu */
+.buttonSetContex {
+    width: 150px;
+    background-color: rgb(56, 56, 56);
+    position: fixed;
+}
+
+.buttonSetContex button {
+    width: 100%;
+    height: 40px;
+    border: none;
+    background-color: rgb(56, 56, 56);
+    text-transform: uppercase;
+    color: white;
+}
+
+.buttonSetContex button:hover {
+    background-color: rgb(86, 86, 86);
+}
+
+.buttonSetContex button:active {
+    background-color: rgb(26, 26, 26);
+}
+
+.buttonSetContex button:first-of-type {
+    border-bottom: 1px solid black;
+}
+.buttonSetContex button:last-of-type {
+    border-top: 1px solid black;
+}
+
+/* TaskDetailsWindow */
+
+#taskDetailsForm {
+    width: 700px;
+}
+
+#taskDetailsFormHeader {
+    width: 600px;
+}
+
+#taskDetailsFormBody {
+    margin: 20px;
+    width: 600px;
+}
+
+#taskDetailsFormBody label {
+    margin: 20px 0px 5px 0px;
+}
+
+#taskDetailsFormBody table {
+    margin: 20px 0px 5px 0px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#taskDetailsFormBody table tbody tr td {
+    border-bottom: 2px solid rgb(130, 224, 130);
+}
+
+#taskDetailsFormBody table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+#taskDetailsFormBody table tbody tr td:first-of-type {
+    width: 200px;
+    padding: 10px 0 10px 0;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(50, 50, 50);
+    text-transform: uppercase;
+}
+
+#taskDetailsFormBody table tbody tr td:last-of-type {
+    font-size: 14px;
+    font-style: italic;
+}
+
+#taskDetailsFormButtons {
+    width: 600px;
+}
+
+#taskDetailsFormButtons button {
+    width: 150px;
+}
+
+/* assessment tail */
+
+.assessmentTail {
+    height: 430px;
+    width: 350px;
+    background-color: tomato;
+    border-radius: 6px;
+    box-shadow: 2px 2px 2px rgb(105, 105, 105);
+    margin: 10px;
+}
+
+.assessTailHeader {
+    width: 90%;
+    padding: 10px 0px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 5px;
+    margin: 20px auto;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#basicAssessTailInfo {
+    align-self: flex-start;
+    width: 60%;
+    margin-left: 20px;
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    font-size: 10px;
+}
+
+#basicAssessTailInfo tr {
+    height: 20px;
+    border-bottom: 1px solid tomato;
+}
+
+#basicAssessTailInfo tr td:first-of-type {
+    width: auto;
+    max-width: 90px;
+    padding: 5px 0;
+    font-size: 12px;
+    font-weight: bold;
+    color: rgb(70, 70, 70);
+    text-transform: uppercase;
+    text-align: center;
+}
+
+#basicAssessTailInfo tr td:last-of-type {
+    width: auto;
+    padding: 5px 0;
+    font-style: italic;
+}
+
+.assessmentTail .assessDetailsBtn {
+    position: relative;
+    top: -68px;
+    right: -110px;
+    width: 100px;
+    box-shadow: 2px 2px 2px rgb(90, 90, 90);
+    text-transform: uppercase;
+    color: white;
+    background-color: rgba(26, 26, 26, 1);
+    font-weight: bold;
+    border: none;
+}
+
+.assessmentTail .orderingBtn {
+    position: relative;
+    top: 160px;
+    width: 90%;
+    border: none;
+    height: 40px;
+    padding: 0px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px rgb(90, 90, 90);
+    text-transform: uppercase;
+    color: white;
+    background-color: rgba(26, 26, 26, 1);
+    font-weight: bold;
+}
+
+.assessmentTail button:active {
+    box-shadow: none;
 }

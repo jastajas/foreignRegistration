@@ -403,6 +403,12 @@ INSERT INTO status (id, name, category) VALUES (13, 'acceptance', 'assessment');
 INSERT INTO status (id, name, category) VALUES (14, 'approval', 'assessment');
 INSERT INTO status (id, name, category) VALUES (15, 'collecting figures', 'roi');
 INSERT INTO status (id, name, category) VALUES (16, 'calculated', 'roi');
+INSERT INTO status (id, name, category) VALUES (17, 'ToDo', 'kanban');
+INSERT INTO status (id, name, category) VALUES (18, 'In progress', 'kanban');
+INSERT INTO status (id, name, category) VALUES (19, 'Done', 'kanban');
+INSERT INTO status (id, name, category) VALUES (20, 'In progress', 'calculation');
+INSERT INTO status (id, name, category) VALUES (21, 'Analyzing', 'calculation');
+INSERT INTO status (id, name, category) VALUES (22, 'Approved', 'calculation');
 
 INSERT INTO user_role (id, username, role) VALUES (1, 'j.kowalski@example.com', 'ROLE_USER');
 INSERT INTO user_role (id, username, role) VALUES (2, 'z.kraweznik@example.com', 'ROLE_USER');
@@ -743,3 +749,33 @@ INSERT INTO assessment_costmh (id, cost, currency, cost_subject, mh, mh_subject,
 INSERT INTO assessment_costmh (id, cost, currency, cost_subject, mh, mh_subject, department_assessment_id) VALUES (9 ,0 ,NULL ,NULL ,321 ,"napisanie nowego modułu CTD" , 14);
 INSERT INTO assessment_costmh (id, cost, currency, cost_subject, mh, mh_subject, department_assessment_id) VALUES (10 ,333.33 ,'USD',"Inne gadżety" , 0, NULL, 19);
 INSERT INTO assessment_costmh (id, cost, currency, cost_subject, mh, mh_subject, department_assessment_id) VALUES (11 ,500.01 ,'PLN',"skrzyneczka na zegarki" , 0, NULL, 19);
+
+INSERT INTO task (id, name, description, deadline, man_effort, task_owner_id, ordering_person_id, ordering_date, status_id, process_id) VALUES (1, 'Przygotować specyfikacje materiałów wyjściowych', 'napisać je i cośtam cośtam', '2019-03-03', 8, 3, 1, '2018-03-03', 17, 1);
+INSERT INTO task (id, name, description, deadline, man_effort, task_owner_id, ordering_person_id, ordering_date, status_id, process_id) VALUES (2, 'Analiza porównawcza profili', 'zanalizować je i cośtam cośtam', '2019-02-15',  44,  5, 1, '2018-03-03', 18, 1);
+INSERT INTO task (id, name, description, deadline, man_effort, task_owner_id, ordering_person_id, ordering_date, status_id, process_id) VALUES (3, 'Tłumaczenie dossier', 'pretłumaczyć je i cośtam cośtam', '2019-02-23', 24, 2, 1, '2018-03-03', 18, 1);
+INSERT INTO task (id, name, description, deadline, man_effort, task_owner_id, ordering_person_id, ordering_date, status_id, process_id) VALUES (4, 'Napisanie na nowo modulu CTD', 'ctd je i cośtam cośtam', '2019-03-23', 100, 3, 2, '2018-03-03', 19, 2);
+INSERT INTO task (id, name, description, deadline, man_effort, task_owner_id, ordering_person_id, ordering_date, status_id, process_id) VALUES (5, 'próbki do badań klinicznych', 'klinika je i cośtam cośtam', '2019-04-16', 55, 5, 2, '2018-03-03', 18, 2);
+INSERT INTO task (id, name, description, deadline, man_effort, task_owner_id, ordering_person_id, ordering_date, status_id, process_id) VALUES (6, 'Raport ekspertów', 'eksperci i cośtam cośtam', '2019-05-01', 2, 2, 2, '2018-03-03', 17, 2);
+INSERT INTO task (id, name, description, deadline, man_effort, task_owner_id, ordering_person_id, ordering_date, status_id, process_id) VALUES (7, 'Opracowanie i walidacja metody', 'walidujemy je i cośtam cośtam', '2019-06-23', 19, 2, 1, '2018-03-03', 18, 3);
+
+INSERT INTO task_relation (id, main_task_id, related_task_id, relation_type) VALUES (1, 2, 1, 'FS');
+INSERT INTO task_relation (id, main_task_id, related_task_id, relation_type) VALUES (2, 3, 1, 'FS');
+INSERT INTO task_relation (id, main_task_id, related_task_id, relation_type) VALUES (3, 5, 4, 'FF');
+INSERT INTO task_relation (id, main_task_id, related_task_id, relation_type) VALUES (4, 6, 5, 'SF');
+
+INSERT INTO currency_rate (id, currency, rate) VALUES (1,'CHF', 3.8141);
+INSERT INTO currency_rate (id, currency, rate) VALUES (2,'EUR', 4.3303);
+INSERT INTO currency_rate (id, currency, rate) VALUES (3,'GBP', 4.9495);
+INSERT INTO currency_rate (id, currency, rate) VALUES (4,'USD', 3.8311);
+INSERT INTO currency_rate (id, currency, rate) VALUES (5,'PLN', 1.0000);
+
+INSERT INTO package_size (id, size, unit_id, assessment_id) VALUES (1, 15, 4, 1);
+INSERT INTO package_size (id, size, unit_id, assessment_id) VALUES (2, 30, 4, 1);
+INSERT INTO package_size (id, size, unit_id, assessment_id) VALUES (3, 25, 4, 2);
+INSERT INTO package_size (id, size, unit_id, assessment_id) VALUES (4, 50, 4, 2);
+INSERT INTO package_size (id, size, unit_id, assessment_id) VALUES (5, 100, 1, 3);
+INSERT INTO package_size (id, size, unit_id, assessment_id) VALUES (6, 4, 4, 4);
+
+INSERT INTO calculation (id, calculation_date, calculation_no, assessment_id, status_id) VALUES (1, '2019-01-23', '0001/C/2019', 1, 20);
+
+INSERT INTO calculation_assumptions (id, assumption_calc_type, subject, single_no_value, currency, calculation_id, assessment_cost_mh_id) VALUES (1, 'ExternalCost', 'Nowy odczynnik' , 145.66 , 'EUR', 1, 1);

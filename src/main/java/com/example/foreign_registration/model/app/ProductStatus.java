@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class ProductStatus {
@@ -81,4 +82,17 @@ public class ProductStatus {
         this.assessments = assessments;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductStatus that = (ProductStatus) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(product_status, that.product_status);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, product_status);
+    }
 }

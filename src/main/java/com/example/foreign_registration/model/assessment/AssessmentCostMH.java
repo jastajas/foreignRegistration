@@ -1,10 +1,12 @@
 package com.example.foreign_registration.model.assessment;
 
 import com.example.foreign_registration.model.app.Currency;
+import com.example.foreign_registration.model.calculation.CalculationAssumptions;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.List;
 
 
 @Entity
@@ -23,7 +25,7 @@ public class AssessmentCostMH {
     private String costSubject;
 
     private int mh;
-
+// todo scalić dla costów i mh => effortSubject
     private String mhSubject;
 
     @ManyToOne
@@ -32,10 +34,13 @@ public class AssessmentCostMH {
     @Transient
     private BigDecimal bd;
 
+    @OneToMany(mappedBy = "assessmentCostMh")
+    private List<CalculationAssumptions> calculationAssumptions;
+
     public AssessmentCostMH() {
     }
 
-    public AssessmentCostMH(double cost, Currency currency, String costSubject, int mh, String mhSubject, DepartmentAssessment department_assessment) {
+    public AssessmentCostMH(double cost, Currency currency, String costSubject, int mh, String mhSubject, DepartmentAssessment department_assessment, List<CalculationAssumptions> calculationAssumptions) {
         this.bd = new BigDecimal(cost);
         this.bd = this.bd.setScale(2, RoundingMode.HALF_UP);
         this.cost = this.bd.doubleValue();
@@ -44,6 +49,7 @@ public class AssessmentCostMH {
         this.mh = mh;
         this.mhSubject = mhSubject;
         this.department_assessment = department_assessment;
+        this.calculationAssumptions = calculationAssumptions;
     }
 
     public AssessmentCostMH(double cost, Currency currency, String costSubject, DepartmentAssessment department_assessment) {
@@ -117,5 +123,13 @@ public class AssessmentCostMH {
 
     public void setDepartment_assessment(DepartmentAssessment department_assessment) {
         this.department_assessment = department_assessment;
+    }
+
+    public List<CalculationAssumptions> getCalculationAssumptions() {
+        return calculationAssumptions;
+    }
+
+    public void setCalculationAssumptions(List<CalculationAssumptions> calculationAssumptions) {
+        this.calculationAssumptions = calculationAssumptions;
     }
 }

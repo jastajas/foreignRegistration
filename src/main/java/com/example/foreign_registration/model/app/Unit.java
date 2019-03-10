@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Unit {
@@ -76,5 +77,19 @@ public class Unit {
 
     public void setPackageSizeList(List<PackageSize> packageSizeList) {
         this.packageSizeList = packageSizeList;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Unit unit1 = (Unit) o;
+        return id == unit1.id &&
+                Objects.equals(unit, unit1.unit);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, unit);
     }
 }
