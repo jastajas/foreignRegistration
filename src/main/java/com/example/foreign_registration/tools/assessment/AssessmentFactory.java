@@ -1,99 +1,141 @@
 package com.example.foreign_registration.tools.assessment;
 
 import com.example.foreign_registration.model.app.*;
-import com.example.foreign_registration.model.assessment.AssessDepartConfirmation;
-import com.example.foreign_registration.model.assessment.Assessment;
-import com.example.foreign_registration.model.assessment.AssessmentPattern;
-import com.example.foreign_registration.model.assessment.DepartmentAssessment;
+import com.example.foreign_registration.model.assessment.*;
+import com.example.foreign_registration.model.exceptions.BuildingAppObjectException;
+import com.example.foreign_registration.model.exceptions.OversizeNumberException;
+import com.example.foreign_registration.repository.app.*;
 import com.example.foreign_registration.repository.assessment.AssessDepartConfirmationRepository;
 import com.example.foreign_registration.repository.assessment.AssessmentPatternRepository;
 import com.example.foreign_registration.repository.assessment.AssessmentRepository;
 import com.example.foreign_registration.repository.assessment.DepartmentAssessmentRepository;
 import com.example.foreign_registration.tools.general.DateGenerator;
+import com.example.foreign_registration.tools.general.Factory;
 import com.example.foreign_registration.tools.general.ObjectNumberCreator;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Service;
+import org.springframework.web.context.WebApplicationContext;
 
 
-import java.util.List;
-import java.util.Optional;
+@Service
+@Scope(scopeName = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
+public class AssessmentFactory extends Factory {
 
-public class AssessmentFactory{
+    private AssessmentRepository assessmentRepo;
+    private CountryRepository countryRepo;
+    private ProductQualificationRepository prodQualificationRepo;
+    private ProductStatusRepository prodStatusRepo;
+    private StatusRepository statusRepo;
+    private UserRepository userRepo;
+    private DepartmentAssessmentRepository departmentAssessmentRepo;
+    private AssessmentPatternRepository assessmentPatternRepo;
+    private AssessDepartConfirmationRepository assessDepartConfirmationRepo;
 
-	private AssessmentRepository assessmentRepository;
 
-	@Autowired
-	public AssessmentFactory(AssessmentRepository assessmentRepository) {
-		this.assessmentRepository = assessmentRepository;
-	}
-
-		public Optional<Assessment> createNewAssesssment(String maxCurrentNo, DateGenerator dateGenerator, Optional<Country> registration_country,
-                                                         Optional<ProductStatus> destined_product_status, AvailabilityStatus availability_status,
-                                                         Optional<ProductQualification> required_prod_qualification, Optional<User> ordering_person,
-                                                         Optional<Status> status, String[] dossierTypes, AssessmentRepository assessmentRepository) {
-
-        String assessNo = ObjectNumberCreator.createObjectNo(maxCurrentNo, dateGenerator.getCurrentYearText(), AppObject.ASSESSMENT);
-        if (assessNo.substring(0,5).equals("99999")){
-            return null;
-        }
-        Assessment createdNewAssess = null;
-
-        if (registration_country.get() != null && registration_country.isPresent() && destined_product_status.get() != null && destined_product_status.isPresent() &&
-                required_prod_qualification.get() != null && required_prod_qualification.isPresent() && ordering_person.get() != null && ordering_person.isPresent() &&
-                status.get() != null && status.isPresent()) {
-            createdNewAssess = new Assessment(assessNo, registration_country.get(), destined_product_status.get(), availability_status, required_prod_qualification.get(), ordering_person.get(), status.get(), dateGenerator.getCurrentDate());
-
-        }
-
-        if (createdNewAssess != null && dossierTypes != null && dossierTypes.length > 0) {
-            for (String dossierType : dossierTypes) {
-
-                switch (dossierType) {
-                    case "sModule":
-                        createdNewAssess.setS_module(true);
-                        break;
-                    case "quality":
-                        createdNewAssess.setQuality_module(true);
-                        break;
-                    case "clinic":
-                        createdNewAssess.setClinical_module(true);
-                        break;
-                    case "nonClinic":
-                        createdNewAssess.setNonclinical_module(true);
-                        break;
-                }
-
-            }
-        }
-
-        if (createdNewAssess != null) {
-            assessmentRepository.save(createdNewAssess);
-            return assessmentRepository.findByAssessmentNo(assessNo);
-        }
-
-        return null;
+    public AssessmentFactory(DateGenerator dateGenerator, AssessmentRepository assessmentRepo, CountryRepository countryRepo,
+                             ProductQualificationRepository prodQualificationRepo, ProductStatusRepository prodStatusRepo,
+                             StatusRepository statusRepo, UserRepository userRepo, DepartmentAssessmentRepository departmentAssessmentRepo,
+                             AssessmentPatternRepository assessmentPatternRepo, AssessDepartConfirmationRepository assessDepartConfirmationRepo) {
+        super(dateGenerator);
+        this.assessmentRepo = assessmentRepo;
+        this.countryRepo = countryRepo;
+        this.prodQualificationRepo = prodQualificationRepo;
+        this.prodStatusRepo = prodStatusRepo;
+        this.statusRepo = statusRepo;
+        this.userRepo = userRepo;
+        this.departmentAssessmentRepo = departmentAssessmentRepo;
+        this.assessmentPatternRepo = assessmentPatternRepo;
+        this.assessDepartConfirmationRepo = assessDepartConfirmationRepo;
     }
 
-	public void prepareElementsToAssessment(DepartmentAssessmentRepository departmentAssessmentRepository, Assessment assessment, AssessmentPatternRepository apr) {
 
-		List<AssessmentPattern> assessmentPatterns = apr.findByProductStatus(assessment.getDestined_product_status());
+    @Override
+    public String createNumber() throws OversizeNumberException {
 
-		if (!assessmentPatterns.isEmpty()) {
+        String maxCurrentAssessNumber = assessmentRepo
+                .getMaxAssessmentNoForCurrentYear(getDateGenerator().getFistDateOfCurrentYear(), getDateGenerator().getCurrentDate())
+                .orElse("00000")
+                .substring(0, 5);
 
-			for (AssessmentPattern assessmentPattern : assessmentPatterns) {
+        return ObjectNumberCreator.createObjectNo(maxCurrentAssessNumber, getDateGenerator().getCurrentYearText(), AppObjectType.ASSESSMENT);
+    }
 
-				departmentAssessmentRepository.save(new DepartmentAssessment(assessmentPattern, assessment));
+    @Override
+    public AppObject create(AppObjectForm appObjectForm) throws BuildingAppObjectException, OversizeNumberException {
+        if (!(appObjectForm instanceof AssessmentForm)) {
+            throw new BuildingAppObjectException("Assessment Form Exception");
+        }
+        AssessmentForm assessmentForm = (AssessmentForm) appObjectForm;
+        if (!assessmentForm.isValid()) {
+            throw new BuildingAppObjectException("Assessment Form Validation Error");
+        }
 
-			}
-		}
-	}
+        Assessment assessment = new Assessment();
+        assessment.setNumber(createNumber());
 
-	public void prepareConfirmationDepartmentList(AssessmentPatternRepository apr, AssessDepartConfirmationRepository adcr, ProductStatus productStatus, Assessment assessment) {
-		List<Department> departments = apr.getAllDepartmentsByStatu(productStatus);
-		for (Department department : departments) {
-			adcr.save(new AssessDepartConfirmation(assessment, department, false));
-		}
-	}
+        countryRepo
+                .findById(assessmentForm.getIdCountry())
+                .ifPresentOrElse(country -> assessment.setRegistration_country(country),
+                        () -> new BuildingAppObjectException("Country not found"));
 
+        prodStatusRepo
+                .findById(assessmentForm.getIdDestinedProdStatus())
+                .ifPresentOrElse(productStatus -> assessment.setDestined_product_status(productStatus),
+                        () -> new BuildingAppObjectException("Product Status not found"));
+
+        prodQualificationRepo
+                .findById(assessmentForm.getIdRequiredProdQualif())
+                .ifPresent(productQualification -> assessment.setRequired_prod_qualification(productQualification));
+
+        userRepo
+                .findByUsername(assessmentForm.getCreatorUsername())
+                .ifPresentOrElse(creator -> assessment.setCreator(creator),
+                        () -> new BuildingAppObjectException("User/Creator not found"));
+
+        statusRepo
+                .findById(Long.valueOf(7))
+                .ifPresentOrElse(status -> assessment.setStatus(status), () -> new BuildingAppObjectException("Status not found"));
+
+        assessment.setAvailability_status(AvailabilityStatus.valueOf(assessmentForm.getAvaliabilityStatus()));
+        assessment.setS_module(assessmentForm.issModule());
+        assessment.setClinical_module(assessmentForm.isQuality());
+        assessment.setNonclinical_module(assessmentForm.isClinic());
+        assessment.setQuality_module(assessmentForm.isNonClinic());
+        assessment.setCreationDate(getDateGenerator().getCurrentDate());
+
+        assessmentRepo.save(assessment);
+
+        return assessmentRepo
+                .findByNumber(assessment.getNumber())
+                .orElseThrow(() -> new BuildingAppObjectException("Object assessment not found"));
+    }
+
+
+    public void prepareElementsToAssessment(Assessment assessment) {
+
+        if (null != assessment) {
+            assessmentPatternRepo
+                    .findByProductStatus(assessment.getDestined_product_status())
+                    .forEach(assessmentPattern -> departmentAssessmentRepo.save(new DepartmentAssessment(assessmentPattern, assessment)));
+
+        }
+    }
+
+    public void prepareConfirmationDepartmentList(long destinedProdStatusId, Assessment assessment) throws BuildingAppObjectException {
+
+        if (null != assessment) {
+
+            ProductStatus destinedProductStatus = prodStatusRepo
+                    .findById(destinedProdStatusId)
+                    .orElseThrow(() -> new BuildingAppObjectException("Destined Product not found"));
+
+            assessmentPatternRepo
+                    .getAllDepartmentsByStatu(destinedProductStatus)
+                    .forEach(department -> assessDepartConfirmationRepo.save(new AssessDepartConfirmation(assessment, department, false)));
+
+        }
+    }
 
 
 }

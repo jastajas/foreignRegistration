@@ -18,11 +18,17 @@ public class FilterParameter {
     }
 
 	/*Filtrowanie za pomocą parametrów jest podzielone na dwa mechanizmy:
+	Filtering by parameters is divided into two ways:
 	 1. Szukanie za pomocą słowa kluczowego
+	 1. Filtering by keyword
 	 2. Szukanie za pomocą nazwy klienta, nazwy produktu HL, nazwy produktu klienta,
+	 2. Filtering by others parameters such as client name, HL product name, client product name,
 	 statusu projektu, nr zlecenia, nr oceny
+	 project status, order no, assessment no
 	 Dwa poniższe mechanizmy nie mogą funkcjonować jednocześnie. Albo szukanie po słowie
-	 kluczowym albo po zestawie parametrów drugiej grupy*/
+	 Two ways of filtering can not be used at the same time. It is set to use one of these two ways:
+	 kluczowym albo po zestawie parametrów drugiej grupy
+	 by keyword or by set of parameters from second filtering way*/
 
     public void addFilterParameter(String filterKey, String filterValue) {
         //motoda obsługuje mechanizm filtrowania nr2, czyli weryfikacja i usunięcie
@@ -48,12 +54,9 @@ public class FilterParameter {
         }
     }
 
-
     public LinkedHashMap<String, String> getFiltersList() {
         return filters;
     }
-
-
 
 }
 

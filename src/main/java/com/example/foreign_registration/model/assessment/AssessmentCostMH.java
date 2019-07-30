@@ -34,13 +34,10 @@ public class AssessmentCostMH {
     @Transient
     private BigDecimal bd;
 
-    @OneToMany(mappedBy = "assessmentCostMh")
-    private List<CalculationAssumptions> calculationAssumptions;
-
     public AssessmentCostMH() {
     }
 
-    public AssessmentCostMH(double cost, Currency currency, String costSubject, int mh, String mhSubject, DepartmentAssessment department_assessment, List<CalculationAssumptions> calculationAssumptions) {
+    public AssessmentCostMH(double cost, Currency currency, String costSubject, int mh, String mhSubject, DepartmentAssessment department_assessment) {
         this.bd = new BigDecimal(cost);
         this.bd = this.bd.setScale(2, RoundingMode.HALF_UP);
         this.cost = this.bd.doubleValue();
@@ -49,7 +46,6 @@ public class AssessmentCostMH {
         this.mh = mh;
         this.mhSubject = mhSubject;
         this.department_assessment = department_assessment;
-        this.calculationAssumptions = calculationAssumptions;
     }
 
     public AssessmentCostMH(double cost, Currency currency, String costSubject, DepartmentAssessment department_assessment) {
@@ -125,11 +121,4 @@ public class AssessmentCostMH {
         this.department_assessment = department_assessment;
     }
 
-    public List<CalculationAssumptions> getCalculationAssumptions() {
-        return calculationAssumptions;
-    }
-
-    public void setCalculationAssumptions(List<CalculationAssumptions> calculationAssumptions) {
-        this.calculationAssumptions = calculationAssumptions;
-    }
 }

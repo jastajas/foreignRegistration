@@ -5,12 +5,17 @@ import com.example.foreign_registration.model.app.Country;
 import com.example.foreign_registration.model.app.ProductQualification;
 import com.example.foreign_registration.model.app.ProductStatus;
 import com.example.foreign_registration.model.assessment.Assessment;
+import com.example.foreign_registration.model.assessment.PackageSize;
+import com.example.foreign_registration.model.process.Process;
 import com.example.foreign_registration.repository.app.CountryRepository;
 import com.example.foreign_registration.repository.app.ProductQualificationRepository;
 import com.example.foreign_registration.repository.app.ProductStatusRepository;
 import com.example.foreign_registration.repository.assessment.AssessmentRepository;
+import com.example.foreign_registration.repository.assessment.PackageSizeRepository;
+import com.example.foreign_registration.repository.process.ProcessRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -24,16 +29,20 @@ public class AssessmentRestController {
     private CountryRepository countryRepository;
     private ProductStatusRepository productStatusRepository;
     private ProductQualificationRepository prodQualRepository;
+    private PackageSizeRepository packageSizeRepository;
+    private ProcessRepository processRepository;
 
     @Autowired
     public AssessmentRestController(AssessmentRepository assessmentRepository, CountryRepository countryRepository,
-                                    ProductStatusRepository productStatusRepository, ProductQualificationRepository prodQualRepository) {
+                                    ProductStatusRepository productStatusRepository, ProductQualificationRepository prodQualRepository,
+                                    PackageSizeRepository packageSizeRepository, ProcessRepository processRepository) {
         this.assessmentRepository = assessmentRepository;
         this.countryRepository = countryRepository;
         this.productStatusRepository = productStatusRepository;
         this.prodQualRepository = prodQualRepository;
+        this.packageSizeRepository = packageSizeRepository;
+        this.processRepository = processRepository;
     }
-
 
     @PutMapping("/api/assessment/{id}/{paramName}/{paramValue}")
     public ResponseEntity<Assessment> changeAssessmentDetail(@PathVariable Long id, @PathVariable String paramName, @PathVariable String paramValue) {
@@ -76,7 +85,7 @@ public class AssessmentRestController {
                     return ResponseEntity.notFound().build();
                 }
                 break;
-                //Todo dodac asesment status change
+            //Todo dodac asesment status change
             default:
                 return ResponseEntity.notFound().build();
         }
@@ -114,6 +123,35 @@ public class AssessmentRestController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(assessmentList);
+    }
+
+    @GetMapping("/api/assessment/process/{id}")
+    public ResponseEntity<List<Assessment>> getAssessmentsByProcess(@PathVariable Long id) {
+
+        Optional<Process> processOptional = processRepository.findById(id);
+        if(!processOptional.isPresent()){
+            return ResponseEntity.notFound().build();
+        }
+        List<Assessment> assessmentList = assessmentRepository.getAllBySelectedProcess(processOptional.get());
+
+        if (assessmentList.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(assessmentList);
+    }
+
+    @GetMapping("/api/assessment/packSize/byAssess/{assessId}")
+    public ResponseEntity<List<PackageSize>> getPackSizesByAssessment(@PathVariable Long assessId) {
+
+        Optional<Assessment> assessmentOptional = assessmentRepository.findById(assessId);
+
+        if (!assessmentOptional.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        List<PackageSize> packageSizeList = packageSizeRepository.getAllByAssessment(assessmentOptional.get());
+
+        return ResponseEntity.ok(packageSizeList);
     }
 
 }

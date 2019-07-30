@@ -1,0 +1,71 @@
+/* Form for selecting package size to calculation */
+#selectPackCalcForm {
+    width: 500px;
+}
+
+#selectPackCalcFormHeader {
+    width: 400px;
+}
+
+#selectPackCalcFormBody {
+    margin: 20px;
+    width: 400px;
+}
+
+#selectPackCalcFormBody label {
+    margin: 20px 0px 5px 0px;
+    display: flex;
+    align-items: center;
+}
+
+#selectPackCalcFormBody label input {
+    /*margin: 20px 0px 5px 0px;*/
+    width: 25px;
+}
+
+#selectPackCalcFormButtons {
+    width: 400px;
+}
+
+#selectPackCalcFormButtons button {
+    width: 150px;
+}
+
+/* Full form */
+#orderCalcForm {
+    width: 500px;
+}
+
+#orderCalcFormHeader {
+    width: 400px;
+}
+
+#orderCalcFormBody {
+    margin: 20px;
+    width: 400px;
+}
+
+#orderCalcFormBody label {
+    margin: 20px 0px 5px 0px;
+    display: flex;
+    align-items: center;
+}
+#orderCalcFormBody input {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.orderCalcFormLabeledinput {
+    /*margin: 20px 0px 5px 0px;*/
+    width: 25px;
+}
+
+#orderCalcFormButtons {
+    width: 400px;
+}
+
+#orderCalcFormButtons button {
+    width: 150px;
+}
+

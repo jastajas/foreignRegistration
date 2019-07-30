@@ -41,33 +41,6 @@ INSERT INTO client (id, name, adress) VALUES (3, 'TakaToFirma', 'TakaToUlica 456
 INSERT INTO client (id, name, adress) VALUES (4, 'PięknaFirma', 'MoulinRouge 87, Paryż, Francja');
 INSERT INTO client (id, name, adress) VALUES (5, 'Letadlo', 'Hranolki 15, Praga, Czechy');
 
-INSERT INTO assessment (id, assessment_no, registration_country_id, destined_product_status_id, availability_status, required_prod_qualification_id, ordering_person_id, status_id, order_date, s_module, clinical_module, nonclinical_module, quality_module)
-VALUES (1, '0001/A/2018', 61, 1, 'RX', 3, 2, 7, '2018-02-15', TRUE, TRUE, TRUE, TRUE);
-INSERT INTO assessment (id, assessment_no, registration_country_id, destined_product_status_id, availability_status, required_prod_qualification_id, ordering_person_id, status_id, order_date, s_module, clinical_module, nonclinical_module, quality_module)
-VALUES (2, '0002/A/2018', 241, 3, 'NA', null, 2, 10, '2018-04-03', FALSE, FALSE, FALSE, FALSE);
-INSERT INTO assessment (id, assessment_no, registration_country_id, destined_product_status_id, availability_status, required_prod_qualification_id, ordering_person_id, status_id, order_date, s_module, clinical_module, nonclinical_module, quality_module)
-VALUES (3, '0003/A/2018', 144, 2, 'NA', null, 2, 11, '2018-05-20', FALSE, FALSE, FALSE, FALSE);
-INSERT INTO assessment (id, assessment_no, registration_country_id, destined_product_status_id, availability_status, required_prod_qualification_id, ordering_person_id, status_id, order_date, s_module, clinical_module, nonclinical_module, quality_module)
-VALUES (4, '0004/A/2018', 61, 1, 'OTC', 3, 2, 10, '2018-07-11', FALSE, TRUE , TRUE, FALSE);
-INSERT INTO assessment (id, assessment_no, registration_country_id, destined_product_status_id, availability_status, required_prod_qualification_id, ordering_person_id, status_id, order_date, s_module, clinical_module, nonclinical_module, quality_module)
-VALUES (5, '0005/A/2018', 241, 2, 'NA', null, 2, 10, '2018-08-02', FALSE, FALSE, FALSE, FALSE);
-INSERT INTO assessment (id, assessment_no, registration_country_id, destined_product_status_id, availability_status, required_prod_qualification_id, ordering_person_id, status_id, order_date, s_module, clinical_module, nonclinical_module, quality_module)
-VALUES (6, '0006/A/2018', 61, 2, 'NA', null, 2, 9, '2018-08-22', FALSE, FALSE, FALSE, FALSE);
-
-INSERT INTO process (id, order_no, product_id, destined_product_name, product_qualification_id, one_order_amount, one_order_unit_id, annual_order_amount, annual_order_unit_id, contact_person_name, contact_person_data, agency_adress, status_id, client_id, order_owner_id, model_cooperation, order_date)
-VALUES (1, '0001/O/2018', 3, 'NowyEkstra Na Cos', 4, 5000, 2, 30000, 2, 'Jakis Gosc','tel 66897451215, mail j.gosc@firma.com Business Development', 'ul. Balicka 95
-30-149 Kraków', 2, 3, 1, 'Distribution', '2018-02-15');
-INSERT INTO process (id, order_no, product_id, destined_product_name, product_qualification_id, one_order_amount, one_order_unit_id, annual_order_amount, annual_order_unit_id, contact_person_name, contact_person_data, agency_adress, status_id, client_id, order_owner_id, model_cooperation, order_date)
-VALUES (2, '0002/O/2018', 2, 'Jescze Cos Lepszego', null, 500, 2, 3000, 2, 'Kolejna Babka','tel 4445556666, mail k.babka@nowy.com Project Coordinator', 'ul. Wysoka 200
-3220-149 Barcelona', 6, 5, 5, 'Licence', '2018-04-03');
-INSERT INTO process (id, order_no, product_id, destined_product_name, product_qualification_id, one_order_amount, one_order_unit_id, annual_order_amount, annual_order_unit_id, contact_person_name, contact_person_data, agency_adress, status_id, client_id, order_owner_id, model_cooperation, order_date)
-VALUES (3, '0003/O/2018', 5, 'Total turbo extra', null, 15000, 2, 100000, 2, 'Inny facet','tel 1111111555, mail i.facet@hura.pl Project Manager', 'ul. Balicka 95
-2130-29 Hamburg', 7, 1, 6, 'Distribution', '2018-05-20');
-INSERT INTO process (id, order_no, product_id, destined_product_name, product_qualification_id, one_order_amount, one_order_unit_id, annual_order_amount, annual_order_unit_id, contact_person_name, contact_person_data, agency_adress, status_id, client_id, order_owner_id, model_cooperation, order_date)
-VALUES (4, '0004/O/2018', 1, 'Hiperasne cos', 3, 15000, 2, 100000, 2, 'Kolejny ktoś','tel 34242123423, mail asa.ssssss@olele.com Business Manager', 'ul. Jakas 95
-2130-29 Hamburg', 7, 1, 6, 'Distribution', '2018-05-20');
-
-
 INSERT INTO product (id, name, drug_form, technological_code, item_no, product_status_id) VALUES (1, 'Ibuprofen 200mg, kaps miekkie', 'kapsułki miękkie', 'XYZ02611', 'E1117Z11160BB', 1);
 INSERT INTO product (id, name, drug_form, technological_code, item_no, product_status_id) VALUES (2, 'Paracetamol Forte, kaps. miekkie', 'kapsułki miękkie', 'QWE01411', 'D2228P44320QQ', 2);
 INSERT INTO product (id, name, drug_form, technological_code, item_no, product_status_id) VALUES (3, 'Hydroxyzinum 10mg, tabletki', 'tabletki', 'POI06613', 'Q0234FF1130ZZ', 1);
@@ -419,15 +392,6 @@ INSERT INTO user_role (id, username, role) VALUES (6, 'h.wielki@example.com', 'R
 INSERT INTO user_role (id, username, role) VALUES (7, 'm.grzebala@example.com', 'ROLE_USER');
 INSERT INTO user_role (id, username, role) VALUES (8, 'j.kowalski@example.com', 'ROLE_HZ');
 
-
-INSERT INTO process_assessment (process_id, assessment_id) VALUES (1, 1);
-INSERT INTO process_assessment (process_id, assessment_id) VALUES (1, 4);
-INSERT INTO process_assessment (process_id, assessment_id) VALUES (1, 6);
-INSERT INTO process_assessment (process_id, assessment_id) VALUES (2, 2);
-INSERT INTO process_assessment (process_id, assessment_id) VALUES (2, 5);
-INSERT INTO process_assessment (process_id, assessment_id) VALUES (3, 3);
-INSERT INTO process_assessment (process_id, assessment_id) VALUES (4, 1);
-
 INSERT INTO assessment_pattern (id, dossier_module, assessment_subject, department_id, product_status_id) VALUES (1, '1 - DANE ADMINISTRACYJNE', 'DANE ADMINISTRACYJNE', 37, 1);
 INSERT INTO assessment_pattern (id, dossier_module, assessment_subject, department_id, product_status_id) VALUES (2, '2 – STRESZCZENIA I RAPORTY', 'STRESZCZENIA I RAPORTY', 37, 1);
 INSERT INTO assessment_pattern (id, dossier_module, assessment_subject, department_id, product_status_id) VALUES (3, '3.2.S. – JAKOŚĆ / CZYNNA ', 'ASMF lub CEP', 60, 1);
@@ -716,6 +680,50 @@ INSERT INTO assessment_pattern (id, dossier_module, assessment_subject, departme
 INSERT INTO assessment_pattern (id, dossier_module, assessment_subject, department_id, product_status_id) VALUES (286, 'DOKUMENTACJA TECHNICZNA WYROBU MEDYCZNEGO', 'Zarządzanie ryzykiem i analiza ryzyka w tym: Sprawozdanie z analizy ryzyka na zgodność z PN-EN ISO 14971', 10, 4);
 INSERT INTO assessment_pattern (id, dossier_module, assessment_subject, department_id, product_status_id) VALUES (287, 'DOKUMENTACJA TECHNICZNA WYROBU MEDYCZNEGO', 'Zarządzanie ryzykiem i analiza ryzyka w tym: Sprawozdanie z analizy ryzyka na zgodność z PN-EN ISO 14971', 38, 4);
 
+INSERT INTO currency_rate (id, currency, rate, update_date) VALUES (1,'PLN', 1.0000, '2019-01-23');
+INSERT INTO currency_rate (id, currency, rate, update_date) VALUES (2,'CHF', 3.5541, '2019-02-28');
+INSERT INTO currency_rate (id, currency, rate, update_date) VALUES (3,'EUR', 4.2003, '2019-02-28');
+INSERT INTO currency_rate (id, currency, rate, update_date) VALUES (4,'GBP', 4.8095, '2019-02-28');
+INSERT INTO currency_rate (id, currency, rate, update_date) VALUES (5,'USD', 3.6611, '2019-02-28');
+INSERT INTO currency_rate (id, currency, rate, update_date) VALUES (6,'CHF', 3.8141, '2019-03-23');
+INSERT INTO currency_rate (id, currency, rate, update_date) VALUES (7,'EUR', 4.3303, '2019-03-23');
+INSERT INTO currency_rate (id, currency, rate, update_date) VALUES (8,'GBP', 4.9495, '2019-03-23');
+INSERT INTO currency_rate (id, currency, rate, update_date) VALUES (9,'USD', 3.8311, '2019-03-23');
+
+INSERT INTO assessment (id, number, registration_country_id, destined_product_status_id, availability_status, required_prod_qualification_id, creator_id, status_id, creation_date, s_module, clinical_module, nonclinical_module, quality_module)
+VALUES (1, '00001/A/2018', 61, 1, 'RX', 3, 2, 7, '2018-02-15', TRUE, TRUE, TRUE, TRUE);
+INSERT INTO assessment (id, number, registration_country_id, destined_product_status_id, availability_status, required_prod_qualification_id, creator_id, status_id, creation_date, s_module, clinical_module, nonclinical_module, quality_module)
+VALUES (2, '00002/A/2018', 241, 3, 'NA', null, 2, 10, '2018-04-03', FALSE, FALSE, FALSE, FALSE);
+INSERT INTO assessment (id, number, registration_country_id, destined_product_status_id, availability_status, required_prod_qualification_id, creator_id, status_id, creation_date, s_module, clinical_module, nonclinical_module, quality_module)
+VALUES (3, '00003/A/2018', 144, 2, 'NA', null, 2, 11, '2018-05-20', FALSE, FALSE, FALSE, FALSE);
+INSERT INTO assessment (id, number, registration_country_id, destined_product_status_id, availability_status, required_prod_qualification_id, creator_id, status_id, creation_date, s_module, clinical_module, nonclinical_module, quality_module)
+VALUES (4, '00004/A/2018', 61, 1, 'OTC', 3, 2, 10, '2018-07-11', FALSE, TRUE , TRUE, FALSE);
+INSERT INTO assessment (id, number, registration_country_id, destined_product_status_id, availability_status, required_prod_qualification_id, creator_id, status_id, creation_date, s_module, clinical_module, nonclinical_module, quality_module)
+VALUES (5, '00005/A/2018', 241, 2, 'NA', null, 2, 10, '2018-08-02', FALSE, FALSE, FALSE, FALSE);
+INSERT INTO assessment (id, number, registration_country_id, destined_product_status_id, availability_status, required_prod_qualification_id, creator_id, status_id, creation_date, s_module, clinical_module, nonclinical_module, quality_module)
+VALUES (6, '00006/A/2018', 61, 2, 'NA', null, 2, 9, '2018-08-22', FALSE, FALSE, FALSE, FALSE);
+
+INSERT INTO process (id, number, product_id, destined_product_name, product_qualification_id, one_order_amount, one_order_unit_id, annual_order_amount, annual_order_unit_id, contact_person_name, contact_person_data, agency_adress, status_id, client_id, creator_id, model_cooperation, creation_date)
+VALUES (1, '00001/O/2018', 3, 'NowyEkstra Na Cos', 4, 5000, 2, 30000, 2, 'Jakis Gosc','tel 66897451215, mail j.gosc@firma.com Business Development', 'ul. Balicka 95
+30-149 Kraków', 2, 3, 1, 'Distribution', '2018-02-15');
+INSERT INTO process (id, number, product_id, destined_product_name, product_qualification_id, one_order_amount, one_order_unit_id, annual_order_amount, annual_order_unit_id, contact_person_name, contact_person_data, agency_adress, status_id, client_id, creator_id, model_cooperation, creation_date)
+VALUES (2, '00002/O/2018', 2, 'Jescze Cos Lepszego', null, 500, 2, 3000, 2, 'Kolejna Babka','tel 4445556666, mail k.babka@nowy.com Project Coordinator', 'ul. Wysoka 200
+3220-149 Barcelona', 6, 5, 5, 'Licence', '2018-04-03');
+INSERT INTO process (id, number, product_id, destined_product_name, product_qualification_id, one_order_amount, one_order_unit_id, annual_order_amount, annual_order_unit_id, contact_person_name, contact_person_data, agency_adress, status_id, client_id, creator_id, model_cooperation, creation_date)
+VALUES (3, '00003/O/2018', 5, 'Total turbo extra', null, 15000, 2, 100000, 2, 'Inny facet','tel 1111111555, mail i.facet@hura.pl Project Manager', 'ul. Balicka 95
+2130-29 Hamburg', 7, 1, 6, 'Distribution', '2018-05-20');
+INSERT INTO process (id, number, product_id, destined_product_name, product_qualification_id, one_order_amount, one_order_unit_id, annual_order_amount, annual_order_unit_id, contact_person_name, contact_person_data, agency_adress, status_id, client_id, creator_id, model_cooperation, creation_date)
+VALUES (4, '00004/O/2018', 1, 'Hiperasne cos', 3, 15000, 2, 100000, 2, 'Kolejny ktoś','tel 34242123423, mail asa.ssssss@olele.com Business Manager', 'ul. Jakas 95
+2130-29 Hamburg', 7, 1, 6, 'Distribution', '2018-05-20');
+
+INSERT INTO process_assessment (process_id, assessment_id) VALUES (1, 1);
+INSERT INTO process_assessment (process_id, assessment_id) VALUES (1, 4);
+INSERT INTO process_assessment (process_id, assessment_id) VALUES (1, 6);
+INSERT INTO process_assessment (process_id, assessment_id) VALUES (2, 2);
+INSERT INTO process_assessment (process_id, assessment_id) VALUES (2, 5);
+INSERT INTO process_assessment (process_id, assessment_id) VALUES (3, 3);
+INSERT INTO process_assessment (process_id, assessment_id) VALUES (4, 1);
+
 INSERT INTO department_assessment (id, assessment_description, assessment_pattern_id, other_assessment_subject, other_subject_department_id, assessment_id, criticality_scale, assessment_date, author_id) VALUES (1 ,NULL ,2 ,NULL ,NULL ,1 ,NULL ,NULL, NULL);
 INSERT INTO department_assessment (id, assessment_description, assessment_pattern_id, other_assessment_subject, other_subject_department_id, assessment_id, criticality_scale, assessment_date, author_id) VALUES (2 ,NULL ,5 ,NULL ,NULL ,1 ,NULL ,NULL, NULL);
 INSERT INTO department_assessment (id, assessment_description, assessment_pattern_id, other_assessment_subject, other_subject_department_id, assessment_id, criticality_scale, assessment_date, author_id) VALUES (3 ,NULL ,7 ,NULL ,NULL ,1 ,NULL ,NULL, NULL);
@@ -738,17 +746,17 @@ INSERT INTO department_assessment (id, assessment_description, assessment_patter
 INSERT INTO department_assessment (id, assessment_description, assessment_pattern_id, other_assessment_subject, other_subject_department_id, assessment_id, criticality_scale, assessment_date, author_id) VALUES (20 ,NULL ,NULL ,'Umowy - producenci API' ,60 ,1 ,NULL ,NULL, NULL);
 INSERT INTO department_assessment (id, assessment_description, assessment_pattern_id, other_assessment_subject, other_subject_department_id, assessment_id, criticality_scale, assessment_date, author_id) VALUES (21 ,NULL ,NULL ,'Aktualizacja dokumentu' ,37 ,1 ,NULL ,NULL, NULL);
 
-INSERT INTO assessment_costmh (id, cost, currency, cost_subject, mh, mh_subject, department_assessment_id) VALUES (1 ,145.66 ,'EUR' ,"Nowy odczynnik" ,0 ,NULL ,12);
-INSERT INTO assessment_costmh (id, cost, currency, cost_subject, mh, mh_subject, department_assessment_id) VALUES (2 ,5000.02 ,'USD' ,"Kolumna HPLC",0 ,NULL ,12);
-INSERT INTO assessment_costmh (id, cost, currency, cost_subject, mh, mh_subject, department_assessment_id) VALUES (3 ,11.11 ,'CHF' ,"Zeszyt w kratkę", 0, NULL, 12);
-INSERT INTO assessment_costmh (id, cost, currency, cost_subject, mh, mh_subject, department_assessment_id) VALUES (4 ,0 ,NULL ,NULL ,55 ,"analizy małe i duże" , 12);
-INSERT INTO assessment_costmh (id, cost, currency, cost_subject, mh, mh_subject, department_assessment_id) VALUES (5 ,0 ,NULL ,NULL ,123 ,"przeczytanie czegoś i wydanie opini" ,12);
-INSERT INTO assessment_costmh (id, cost, currency, cost_subject, mh, mh_subject, department_assessment_id) VALUES (6 ,0 ,NULL ,NULL ,32 ,"rozmowy i spotkania", 12);
-INSERT INTO assessment_costmh (id, cost, currency, cost_subject, mh, mh_subject, department_assessment_id) VALUES (7 ,22.22 ,'EUR' ,"Zatyczki do uszu" , 0, NULL, 14);
-INSERT INTO assessment_costmh (id, cost, currency, cost_subject, mh, mh_subject, department_assessment_id) VALUES (8 ,0 ,NULL ,NULL ,44 ,"napisanie dwóch maili" , 14);
-INSERT INTO assessment_costmh (id, cost, currency, cost_subject, mh, mh_subject, department_assessment_id) VALUES (9 ,0 ,NULL ,NULL ,321 ,"napisanie nowego modułu CTD" , 14);
-INSERT INTO assessment_costmh (id, cost, currency, cost_subject, mh, mh_subject, department_assessment_id) VALUES (10 ,333.33 ,'USD',"Inne gadżety" , 0, NULL, 19);
-INSERT INTO assessment_costmh (id, cost, currency, cost_subject, mh, mh_subject, department_assessment_id) VALUES (11 ,500.01 ,'PLN',"skrzyneczka na zegarki" , 0, NULL, 19);
+INSERT INTO assessment_costmh (id, cost, currency, cost_subject, mh, mh_subject, department_assessment_id) VALUES (1 ,145.66 ,'EUR' ,'Nowy odczynnik' ,0 ,NULL ,12);
+INSERT INTO assessment_costmh (id, cost, currency, cost_subject, mh, mh_subject, department_assessment_id) VALUES (2 ,5000.02 ,'USD' ,'Kolumna HPLC',0 ,NULL ,12);
+INSERT INTO assessment_costmh (id, cost, currency, cost_subject, mh, mh_subject, department_assessment_id) VALUES (3 ,11.11 ,'CHF' ,'Zeszyt w kratkę', 0, NULL, 12);
+INSERT INTO assessment_costmh (id, cost, currency, cost_subject, mh, mh_subject, department_assessment_id) VALUES (4 ,0 ,NULL ,NULL ,55 ,'analizy małe i duże' , 12);
+INSERT INTO assessment_costmh (id, cost, currency, cost_subject, mh, mh_subject, department_assessment_id) VALUES (5 ,0 ,NULL ,NULL ,123 ,'przeczytanie czegoś i wydanie opini' ,12);
+INSERT INTO assessment_costmh (id, cost, currency, cost_subject, mh, mh_subject, department_assessment_id) VALUES (6 ,0 ,NULL ,NULL ,32 ,'rozmowy i spotkania', 12);
+INSERT INTO assessment_costmh (id, cost, currency, cost_subject, mh, mh_subject, department_assessment_id) VALUES (7 ,22.22 ,'EUR' ,'Zatyczki do uszu' , 0, NULL, 14);
+INSERT INTO assessment_costmh (id, cost, currency, cost_subject, mh, mh_subject, department_assessment_id) VALUES (8 ,0 ,NULL ,NULL ,44 ,'napisanie dwóch maili' , 14);
+INSERT INTO assessment_costmh (id, cost, currency, cost_subject, mh, mh_subject, department_assessment_id) VALUES (9 ,0 ,NULL ,NULL ,321 ,'napisanie nowego modułu CTD' , 14);
+INSERT INTO assessment_costmh (id, cost, currency, cost_subject, mh, mh_subject, department_assessment_id) VALUES (10 ,333.33 ,'USD','Inne gadżety' , 0, NULL, 19);
+INSERT INTO assessment_costmh (id, cost, currency, cost_subject, mh, mh_subject, department_assessment_id) VALUES (11 ,500.01 ,'PLN','skrzyneczka na zegarki' , 0, NULL, 19);
 
 INSERT INTO task (id, name, description, deadline, man_effort, task_owner_id, ordering_person_id, ordering_date, status_id, process_id) VALUES (1, 'Przygotować specyfikacje materiałów wyjściowych', 'napisać je i cośtam cośtam', '2019-03-03', 8, 3, 1, '2018-03-03', 17, 1);
 INSERT INTO task (id, name, description, deadline, man_effort, task_owner_id, ordering_person_id, ordering_date, status_id, process_id) VALUES (2, 'Analiza porównawcza profili', 'zanalizować je i cośtam cośtam', '2019-02-15',  44,  5, 1, '2018-03-03', 18, 1);
@@ -763,12 +771,6 @@ INSERT INTO task_relation (id, main_task_id, related_task_id, relation_type) VAL
 INSERT INTO task_relation (id, main_task_id, related_task_id, relation_type) VALUES (3, 5, 4, 'FF');
 INSERT INTO task_relation (id, main_task_id, related_task_id, relation_type) VALUES (4, 6, 5, 'SF');
 
-INSERT INTO currency_rate (id, currency, rate) VALUES (1,'CHF', 3.8141);
-INSERT INTO currency_rate (id, currency, rate) VALUES (2,'EUR', 4.3303);
-INSERT INTO currency_rate (id, currency, rate) VALUES (3,'GBP', 4.9495);
-INSERT INTO currency_rate (id, currency, rate) VALUES (4,'USD', 3.8311);
-INSERT INTO currency_rate (id, currency, rate) VALUES (5,'PLN', 1.0000);
-
 INSERT INTO package_size (id, size, unit_id, assessment_id) VALUES (1, 15, 4, 1);
 INSERT INTO package_size (id, size, unit_id, assessment_id) VALUES (2, 30, 4, 1);
 INSERT INTO package_size (id, size, unit_id, assessment_id) VALUES (3, 25, 4, 2);
@@ -776,6 +778,6 @@ INSERT INTO package_size (id, size, unit_id, assessment_id) VALUES (4, 50, 4, 2)
 INSERT INTO package_size (id, size, unit_id, assessment_id) VALUES (5, 100, 1, 3);
 INSERT INTO package_size (id, size, unit_id, assessment_id) VALUES (6, 4, 4, 4);
 
-INSERT INTO calculation (id, calculation_date, calculation_no, assessment_id, status_id) VALUES (1, '2019-01-23', '0001/C/2019', 1, 20);
-
-INSERT INTO calculation_assumptions (id, assumption_calc_type, subject, single_no_value, currency, calculation_id, assessment_cost_mh_id) VALUES (1, 'ExternalCost', 'Nowy odczynnik' , 145.66 , 'EUR', 1, 1);
+INSERT INTO calculation (id, creation_date, number, assessment_id, status_id, process_id, creator_id, charge_type, charge_subject, periods_no) VALUES (1, '2019-01-23', '00001/C/2019', 1, 20, 4, 7, 'VALUE', 'PACKAGE', 5);
+INSERT INTO calculation_package_sizes (calculation_id,package_sizes_id) VALUES (1,1);
+INSERT INTO calculation_package_sizes (calculation_id,package_sizes_id) VALUES (1,2);

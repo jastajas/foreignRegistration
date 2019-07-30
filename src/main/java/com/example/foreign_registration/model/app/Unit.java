@@ -17,16 +17,16 @@ public class Unit {
 
     private String unit;
 
-    @OneToMany(mappedBy = "one_order_unit")
     @JsonIgnore
+    @OneToMany(mappedBy = "one_order_unit")
     private List<Process> processes;
 
-    @OneToMany(mappedBy = "annual_order_unit")
     @JsonIgnore
+    @OneToMany(mappedBy = "annual_order_unit")
     private List<Process> processList;
 
-    @OneToMany(mappedBy = "unit")
     @JsonIgnore
+    @OneToMany(mappedBy = "unit")
     private List<PackageSize> packageSizeList;
 
     public Unit(String unit, List<Process> processes, List<Process> processList, List<PackageSize> packageSizeList) {

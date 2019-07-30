@@ -2,7 +2,10 @@ package com.example.foreign_registration.controller;
 
 import com.example.foreign_registration.model.app.*;
 import com.example.foreign_registration.model.assessment.*;
+import com.example.foreign_registration.model.exceptions.BuildingAppObjectException;
+import com.example.foreign_registration.model.exceptions.OversizeNumberException;
 import com.example.foreign_registration.model.process.ModelCooperation;
+import com.example.foreign_registration.model.process.ProcessForm;
 import com.example.foreign_registration.repository.app.*;
 import com.example.foreign_registration.repository.assessment.*;
 import com.example.foreign_registration.repository.process.ProcessRepository;
@@ -16,9 +19,7 @@ import com.example.foreign_registration.tools.general.ObjectsBinder;
 import com.example.foreign_registration.tools.process.ProcessFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
@@ -29,16 +30,16 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
+@SessionAttributes("filterParameter")
 public class AssessmentController {
 
     private AssessmentRepository ar;
-    private ClientRepository cr;
+    private ClientRepository clientRepository;
     private ProcessRepository procR;
     private ProductRepository prodR;
     private CountryRepository countR;
     private ProductQualificationRepository pqr;
     private ProductStatusRepository psr;
-    private FilterParameter filterParameter;
     private AssessmentDAO assessmentDAO;
     private DynamicSqlSyntaxBuilder dynamicSqlSyntaxBuilder;
     private FilterManager filterManager;
@@ -54,22 +55,24 @@ public class AssessmentController {
     private PackageSizeRepository packageSizeR;
     private AssessmentPatternRepository apr;
     private AssessDepartConfirmationRepository adcr;
+    private ProcessFactory processFactory;
+    private AssessmentFactory assessmentFactory;
 
-    public AssessmentController(AssessmentRepository ar, ClientRepository cr, ProcessRepository procR,
+    public AssessmentController(AssessmentRepository ar, ClientRepository clientRepository, ProcessRepository procR,
                                 ProductRepository prodR, CountryRepository countR, ProductQualificationRepository pqr,
-                                ProductStatusRepository psr, FilterParameter filterParameter, AssessmentDAO assessmentDAO,
+                                ProductStatusRepository psr, AssessmentDAO assessmentDAO,
                                 DynamicSqlSyntaxBuilder dynamicSqlSyntaxBuilder, FilterManager filterManager, StatusRepository sr,
                                 DepartmentRepository dr, UserRepository ur, DepartmentAssessmentRepository daR, AssessmentCostMHRepository assessCostMhR,
                                 DateGenerator dateGenerator, RequirementRepository rrr, AssessmentViewTool assessmentViewTool, UnitRepository unitRepository,
-                                PackageSizeRepository packageSizeR, AssessmentPatternRepository apr, AssessDepartConfirmationRepository adcr) {
+                                PackageSizeRepository packageSizeR, AssessmentPatternRepository apr, AssessDepartConfirmationRepository adcr,
+                                ProcessFactory processFactory, AssessmentFactory assessmentFactory) {
         this.ar = ar;
-        this.cr = cr;
+        this.clientRepository = clientRepository;
         this.procR = procR;
         this.prodR = prodR;
         this.countR = countR;
         this.pqr = pqr;
         this.psr = psr;
-        this.filterParameter = filterParameter;
         this.assessmentDAO = assessmentDAO;
         this.dynamicSqlSyntaxBuilder = dynamicSqlSyntaxBuilder;
         this.sr = sr;
@@ -85,21 +88,27 @@ public class AssessmentController {
         this.packageSizeR = packageSizeR;
         this.apr = apr;
         this.adcr = adcr;
+        this.processFactory = processFactory;
+        this.assessmentFactory = assessmentFactory;
+    }
+
+    @ModelAttribute("filterParameter")
+    public FilterParameter setFilterParameter() {
+        return new FilterParameter();
     }
 
 
     @GetMapping("/assessmentList")
-    public String showAssessmentList(Model model, HttpServletRequest request) {
+    public String showAssessmentList(@ModelAttribute("filterParameter") FilterParameter filterParameter, Model model, HttpServletRequest request) {
 
         List<Assessment> assessments = null;
-        //boolean isArrayCorrect = true;
 
         if (filterParameter.getFiltersList().isEmpty() || filterParameter.getFiltersList() == null) {
             assessments = ar.findAll();
         } else if (filterParameter.getFiltersList().containsKey("byKeyword")) {
             assessments = ar.listAllByKeyWord(filterParameter.getFiltersList().get("byKeyword"));
         } else if (filterManager.isOtherThenKeyWord(filterParameter.getFiltersList())) {
-            assessments = assessmentDAO.getFilteredAssessments(dynamicSqlSyntaxBuilder.buildFilterQuery(filterParameter.getFiltersList()));
+            assessments = assessmentDAO.getFilteredAssessments(dynamicSqlSyntaxBuilder.buildFilterQuery(filterParameter.getFiltersList(), AppObjectType.ASSESSMENT));
         }
 
         if (request.isUserInRole("ROLE_HZ")) {
@@ -119,17 +128,17 @@ public class AssessmentController {
 
     //TODO zmienic na posta
     @GetMapping("/assessmentList/addFilter")
-    public String removeFilterParam(
-            @RequestParam(required = false) String byKeyword,
-            @RequestParam(required = false) String byClient,
-            @RequestParam(required = false) String byProductHL,
-            @RequestParam(required = false) String byProductClient,
-            @RequestParam(required = false) String byOrder,
-            @RequestParam(required = false) String byOrderDateStart,
-            @RequestParam(required = false) String byOrderDateEnd,
-            @RequestParam(required = false) String byCooperationModel,
-            @RequestParam(required = false) String byAssessment,
-            @RequestParam(defaultValue = "0") long byStatus
+    public String removeFilterParam(@ModelAttribute("filterParameter") FilterParameter filterParameter,
+                                    @RequestParam(required = false) String byKeyword,
+                                    @RequestParam(required = false) String byClient,
+                                    @RequestParam(required = false) String byProductHL,
+                                    @RequestParam(required = false) String byProductClient,
+                                    @RequestParam(required = false) String byOrder,
+                                    @RequestParam(required = false) String byOrderDateStart,
+                                    @RequestParam(required = false) String byOrderDateEnd,
+                                    @RequestParam(required = false) String byCooperationModel,
+                                    @RequestParam(required = false) String byAssessment,
+                                    @RequestParam(defaultValue = "0") long byStatus
     ) {
 
 
@@ -181,7 +190,7 @@ public class AssessmentController {
     }
 
     @GetMapping("assessmentList/removeFilter")
-    public String removeFilterParam(@RequestParam() String filterName) {
+    public String removeFilterParam(@ModelAttribute("filterParameter") FilterParameter filterParameter, @RequestParam() String filterName) {
 
         if ("".equals(filterName) || filterName == null) {
             return "redirect: /assessmentsList";
@@ -207,7 +216,7 @@ public class AssessmentController {
         }
 
         model.addAttribute("multiTaskTool", assessmentViewTool);
-        model.addAttribute("clientList", cr.findAll());
+        model.addAttribute("clientList", clientRepository.findAll());
         model.addAttribute("requiredProdQualification", pqr.findAll());
         model.addAttribute("requiredProdStatus", psr.findAll());
         model.addAttribute("countryList", countR.findAll());
@@ -221,6 +230,8 @@ public class AssessmentController {
         model.addAttribute("statusesForAssessment", sr.getByCategoryIs("assessment"));
         //TODO weryfikacja użytkownika zanim zostanie wrzucony do kontenerka
         model.addAttribute("logedUser", ur.findByUsername(principal.getName()).get());
+        model.addAttribute("assessForm", new AssessmentForm());
+        model.addAttribute("prosessForm", new ProcessForm());
 
         if (processId != null && processId != 0) {
             model.addAttribute("selectedProcessId", processId);
@@ -257,7 +268,12 @@ public class AssessmentController {
         departAssessment.get().setDescriptonAndDateAndCriticalityAndManHours(assessmentDescription, dateGenerator.getCurrentDate(), CriticalityScale.valueOf(criticalityLevel));
         daR.save(departAssessment.get());
 
-        List<AssessmentCostMH> assessmentCostList = departAssessment.get().getAssessmentCostMHs().stream().filter(assessmentCostMH -> 0 != assessmentCostMH.getCost()).collect(Collectors.toList());
+        List<AssessmentCostMH> assessmentCostList = departAssessment
+                .get()
+                .getAssessmentCostMHs()
+                .stream()
+                .filter(assessmentCostMH -> 0 != assessmentCostMH.getCost())
+                .collect(Collectors.toList());
         List<AssessmentCostMH> assessmentMHList = departAssessment.get().getAssessmentCostMHs().stream().filter(assessmentCostMH -> 0 != assessmentCostMH.getMh()).collect(Collectors.toList());
 
         if (assessmentCostList.size() > 0 && costValue != null && costCurrency != null && costSubject != null) {
@@ -331,7 +347,7 @@ public class AssessmentController {
 
     @GetMapping("/assessmentError")
     public String showErrorPage(@RequestParam(defaultValue = "") String errorMessage, Model model) {
-
+        model.addAttribute("errorMessage", errorMessage);
         return "errorPage";
     }
 
@@ -397,91 +413,87 @@ public class AssessmentController {
     /**
      * Method for creating order of the assessment
      */
+
     @PostMapping("/assessmentList/addNewAssessment")
-    public String addNewAssessment(@RequestParam(required = false) Long clientID, @RequestParam(required = false) String cooperationModel, @RequestParam(required = false) Long productID,
-                                   @RequestParam() Long counrtyID, @RequestParam(required = false) String destinedProdName, @RequestParam() Long destinedProdStatusID,
-                                   @RequestParam() String avStatus, @RequestParam(required = false) Long productQualificationID, @RequestParam() Long requiredProdQualificationID,
-                                   @RequestParam(required = false) String[] dossierType, @RequestParam(required = false) String[] requirement,
-                                   @RequestParam(required = false) String[] packageSize, @RequestParam(required = false) String[] packageUnit,
-                                   @RequestParam(defaultValue = "0") Long choosedAssessmentID, @RequestParam(defaultValue = "0") Long processID,
-                                   Principal principal, HttpServletRequest request, Model model) {
+    public String addNewAssessment(@RequestParam(required = false) String[] requirement, @RequestParam(required = false) String[] packageSize,
+                                   @RequestParam(required = false) String[] packageUnit, @RequestParam(required = false) PackageSize[] packaSize
+                                   ,Principal principal, HttpServletRequest request,
+                                   Model model, AssessmentForm assessmentForm, ProcessForm processForm) {
 
-        if (!request.isUserInRole("ROLE_HZ")) {
-            model.addAttribute("errorMessage", "Nie wolno Ci.");
-            return "errorPage";
+        if (!request.isUserInRole("ROLE_HZ"))
+            return "redirect:/assessmentError?errorMessage=Action isn't allowed.";
+
+        Process process = null;
+        try {
+            if (processForm.getIdProcess() != 0) {
+                process = procR.findById(processForm.getIdProcess()).orElseThrow(() -> new NoSuchElementException("Selected process not found"));
+            } else {
+                processForm.setCreatorUsername(principal.getName());
+                process = (Process) processFactory.create(processForm);
+            }
+        } catch (OversizeNumberException e) {
+            e.printStackTrace();
+            return "redirect:/assessmentError?errorMessage=" + e.getMessage();
+        } catch (BuildingAppObjectException e) {
+            e.printStackTrace();
+            return "redirect:/assessmentError?errorMessage=" + e.getMessage();
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+            return "redirect:/assessmentError?errorMessage=" + e.getMessage();
         }
 
-        Optional<Process> optionalProcess = null;
-        Optional<String> maxCurrentProcessNo = procR.getMaxProcessNoForCurrentYear(dateGenerator.getFistDateOfCurrentYear(), dateGenerator.getCurrentDate());
-        if (processID != null && processID > 0) {
-            optionalProcess = procR.findById(processID);
-        } else {
-            ProcessFactory processFactory = new ProcessFactory(procR);
-            optionalProcess = processFactory.createOptionalNewProcess((maxCurrentProcessNo.isPresent() && procR.getCountAllRows() != 0) ? maxCurrentProcessNo.get() : "00000",
-                    prodR.findById(productID), destinedProdName, pqr.findById(productQualificationID), sr.findById((long) 1), cr.findById(clientID),
-                    ur.findByUsername(principal.getName()), ModelCooperation.valueOf(cooperationModel), dateGenerator, procR);
+        Assessment assessment = null;
+        try {
+            if (assessmentForm.getIdAssessment() > 0) {
+                assessment = ar.findById(assessmentForm.getIdAssessment()).orElseThrow(() -> new NoSuchElementException());
+            } else {
+                assessmentForm.setCreatorUsername(principal.getName());
+                assessment = (Assessment) assessmentFactory.create(assessmentForm);
+            }
+        } catch (OversizeNumberException e) {
+            e.printStackTrace();
+            return "redirect:/assessmentError?errorMessage=" + e.getMessage();
+        } catch (BuildingAppObjectException e) {
+            e.printStackTrace();
+            return "redirect:/assessmentError?errorMessage=" + e.getMessage();
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+            return "redirect:/assessmentError?errorMessage=" + e.getMessage();
         }
 
-        Process selectedProcess = null;
-        if (optionalProcess != null && optionalProcess.isPresent()) {
-            selectedProcess = optionalProcess.get();
-        } else {
-            model.addAttribute("errorMessage", ".");
-            return "forward:/assessmentError";
-        }
 
-        Optional<Assessment> assessmentOptional = null;
-        AssessmentFactory assessmentFactory = null;
-        Optional<String> maxCurrentIdAssessment = ar.getMaxAssessmentNoForCurrentYear(dateGenerator.getFistDateOfCurrentYear(), dateGenerator.getCurrentDate());
-        if (choosedAssessmentID != null && choosedAssessmentID > 0) {
-            assessmentOptional = ar.findById(choosedAssessmentID);
-        } else {
-            assessmentFactory = new AssessmentFactory(ar);
-            assessmentOptional = assessmentFactory.createNewAssesssment((maxCurrentIdAssessment.isPresent() && procR.getCountAllRows() != 0) ? maxCurrentIdAssessment.get() : "00000", dateGenerator,
-                    countR.findById(counrtyID), psr.findById(destinedProdStatusID), AvailabilityStatus.valueOf(avStatus),
-                    pqr.findById(requiredProdQualificationID), ur.findByUsername(principal.getName()), sr.findById((long) 7),
-                    dossierType, ar);
-        }
-
-        Assessment selectedAssessment = null;
-
-        if (assessmentOptional != null && assessmentOptional.isPresent()) {
-            selectedAssessment = assessmentOptional.get();
-        } else {
-            return "errorPage";
-        }
-
-        ObjectsBinder.createAssessmentProcessRelation(selectedProcess, selectedAssessment, procR, ar);
+        ObjectsBinder.createAssessmentProcessRelation(process, assessment, procR, ar);
         if (null != assessmentFactory) {
-            assessmentFactory.prepareElementsToAssessment(daR, selectedAssessment, apr);
+            assessmentFactory.prepareElementsToAssessment(assessment);
         }
 
 
-        if (requirement != null && requirement.length > 0 && (choosedAssessmentID == null || choosedAssessmentID == 0)) {
+        if (requirement != null && requirement.length > 0 && ( assessmentForm.getIdAssessment() == 0)) {
             for (String simpleRequirement : requirement) {
-                rrr.save(new Requirement(selectedAssessment, simpleRequirement));
+                rrr.save(new Requirement(assessment, simpleRequirement));
             }
         }
 
         if (packageSize != null && packageUnit != null && packageSize.length > 0 && packageUnit.length > 0 &&
-                packageSize.length == packageUnit.length && (choosedAssessmentID == null || choosedAssessmentID == 0)) {
+                packageSize.length == packageUnit.length && (assessmentForm.getIdAssessment()  == 0)) {
             for (int i = 0; i < packageSize.length; i++) {
                 Optional<Unit> unitOptional = unitRepository.findByUnit(packageUnit[i]);
                 try {
-                    packageSizeR.save(new PackageSize(Double.valueOf(packageSize[i]), unitOptional.get(), selectedAssessment));
+                    packageSizeR.save(new PackageSize(Double.valueOf(packageSize[i]), unitOptional.get(), assessment));
                 } catch (NoSuchElementException e) {
                 } catch (NumberFormatException f) {
                 }
             }
         }
 
-        Optional<ProductStatus> productStatusOptional = psr.findById(destinedProdStatusID);
-        if (productStatusOptional.isPresent() && null != assessmentFactory) {
-            assessmentFactory.prepareConfirmationDepartmentList(apr, adcr, productStatusOptional.get(), selectedAssessment);
+        try {
+            assessmentFactory.prepareConfirmationDepartmentList(assessmentForm.getIdDestinedProdStatus(), assessment);
+        } catch (BuildingAppObjectException e) {
+            e.printStackTrace();
         }
 
-        return "redirect:/assessmentDetails?id=" + selectedAssessment.getId();
-    }
 
+        return "redirect:/assessmentDetails?id=" + assessment.getId();
+    }
 
 }

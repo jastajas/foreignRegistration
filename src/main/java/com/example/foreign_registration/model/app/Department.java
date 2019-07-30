@@ -40,23 +40,18 @@ public class Department {
     @JsonIgnore
     private List<DepartmentRate> departmentRates;
 
-    @OneToMany(mappedBy = "department")
-    @JsonIgnore
-    private List<CalculationAssumptions> calculationAssumptions;
-
     public Department() {
     }
 
     public Department(String name, List<User> users, List<AssessmentPattern> assessmentPatterns,
                       List<AssessDepartConfirmation> assessDepartConfirmations, List<DepartmentAssessment> departmentAssessments,
-                      List<DepartmentRate> departmentRates, List<CalculationAssumptions> calculationAssumptions) {
+                      List<DepartmentRate> departmentRates) {
         this.name = name;
         this.users = users;
         this.assessmentPatterns = assessmentPatterns;
         this.assessDepartConfirmations = assessDepartConfirmations;
         this.departmentAssessments = departmentAssessments;
         this.departmentRates = departmentRates;
-        this.calculationAssumptions = calculationAssumptions;
     }
 
     public Long getId() {
@@ -115,11 +110,17 @@ public class Department {
         this.departmentRates = departmentRates;
     }
 
-    public List<CalculationAssumptions> getCalculationAssumptions() {
-        return calculationAssumptions;
-    }
 
-    public void setCalculationAssumptions(List<CalculationAssumptions> calculationAssumptions) {
-        this.calculationAssumptions = calculationAssumptions;
+    @Override
+    public String toString() {
+        return "Department{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", users=" + users +
+                ", assessmentPatterns=" + assessmentPatterns +
+                ", assessDepartConfirmations=" + assessDepartConfirmations +
+                ", departmentAssessments=" + departmentAssessments +
+                ", departmentRates=" + departmentRates +
+                '}';
     }
 }

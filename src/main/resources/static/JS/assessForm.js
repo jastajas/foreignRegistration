@@ -29,9 +29,9 @@ function showForm() {
 
     if (null != document.getElementById("destinedProductStatusBasicForm")) {
         document.getElementById("destinedProductStatusBasicForm").addEventListener("change",
-            function () {
-            sitchOffAssessmentList();
-                hideShowMedicineElements(document.getElementById("destinedProductStatusBasicForm"));
+            function (ev) {
+                sitchOffAssessmentList();
+                hideShowMedicineElements(document.getElementById(ev.target.id));
             })
     }
     if (null != document.getElementById("requiredQalificationBasicForm")) {
@@ -58,25 +58,28 @@ function showProcessList() {
         alert("The process id is not provided. Please take another action attempt. If problem occurs again, please contact with IT.");
         return false;
     }
-    var procesInput = createFilledInputTextElementNonVisible(currentProcessId, "processID");
-    procesInput.id = "inputProcessID";
-    document.getElementById("basicAssessmentForm").appendChild(procesInput);
+
+    document.getElementById("inputProcessID").value = currentProcessId;
+
     var inactiveInputsList = ["clientBasicForm", "cooperationBasicForm", "productBasicForm", "destinedNameBasicForm", "originalQalificationBasicForm"];
     for (var i = 0; i < inactiveInputsList.length; i++) {
         document.getElementById(inactiveInputsList[i]).disabled = true;
+        document.getElementById(inactiveInputsList[i]).required = false;
     }
     showForm();
 }
 
 /** Method for closing assessment */
 function closeAddAssessForm() {
-    if (null != document.getElementById("inputProcessID")) {
-        document.getElementById("basicAssessmentForm").removeChild(document.getElementById("inputProcessID"));
-        var inactiveInputsList = ["clientBasicForm", "cooperationBasicForm", "productBasicForm", "destinedNameBasicForm", "originalQalificationBasicForm"];
-        for (var i = 0; i < inactiveInputsList.length; i++) {
-            document.getElementById(inactiveInputsList[i]).disabled = false;
-        }
+
+    document.getElementById("inputProcessID").value = 0;
+
+    var inactiveInputsList = ["clientBasicForm", "cooperationBasicForm", "productBasicForm", "destinedNameBasicForm", "originalQalificationBasicForm"];
+    for (var i = 0; i < inactiveInputsList.length; i++) {
+        document.getElementById(inactiveInputsList[i]).disabled = false;
+        document.getElementById(inactiveInputsList[i]).required = true;
     }
+
     document.getElementById("basicAssessmentFormBckGd").style.display = "none";
 }
 
@@ -144,11 +147,15 @@ function hideShowMedicineElements(destinedProductStatus) {
         document.getElementById("availStatNone").checked = true;
         document.getElementById("originalQalification").value = "";
         document.getElementById("requiredQalification").value = "";
+        document.getElementById("originalQalification").required = false;
+        document.getElementById("requiredQalification").required = false;
     } else {
         document.getElementById("availabilityProdDiv").style.display = "flex";
         document.getElementById("originalQalificDiv").style.display = "flex";
         document.getElementById("requiredQalificDiv").style.display = "flex";
         document.getElementById("ctdSwitcherDiv").style.display = "flex";
+        document.getElementById("originalQalification").required = true;
+        document.getElementById("requiredQalification").required = true;
     }
 
 }
@@ -323,7 +330,7 @@ function getOrderList() {
         assessmentList = xhttp.response;
         console.log(assessmentList);
         if (xhttp.status === 404) {
-            alert("Dupa blada");
+            alert("Object not found");
         }
         makeOrderList(assessmentList);
         document.getElementById("orderListId").setAttribute("class", "entityForm visibleAddFormElement");
@@ -345,8 +352,9 @@ function makeOrderList(ajaxResponseObj) {
     ordersInput.appendChild(firstOrderBlankObj);
     for (var q = 0; q < ajaxResponseObj.length; q++) {
         var orderSimpleObj = document.createElement("option");
-        orderSimpleObj.textContent = ajaxResponseObj[q].assessmentNo;
+        orderSimpleObj.textContent = ajaxResponseObj[q].number;
         orderSimpleObj.id = ajaxResponseObj[q].id;
+        orderSimpleObj.value = ajaxResponseObj[q].id;
         ordersInput.appendChild(orderSimpleObj);
     }
 }

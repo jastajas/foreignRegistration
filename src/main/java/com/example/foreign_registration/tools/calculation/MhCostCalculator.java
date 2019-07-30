@@ -6,6 +6,7 @@ import com.example.foreign_registration.model.calculation.CurrencyRate;
 import com.example.foreign_registration.repository.assessment.AssessmentCostMHRepository;
 import com.example.foreign_registration.repository.assessment.DepartmentAssessmentRepository;
 import com.example.foreign_registration.repository.calculation.CurrencyRateRepository;
+import com.example.foreign_registration.tools.general.DateGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -14,6 +15,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Date;
 import java.util.Optional;
 
 @Component
@@ -32,10 +34,12 @@ public class MhCostCalculator {
 
     public double getSumCostForAssessment(long assessmentId) {
 
+        DateGenerator dateGenerator = new DateGenerator();
+
         double sum = 0;
         for (Currency value : Currency.values()) {
             Optional<Double> tempSum = assessmentCostMHRepository.getSumCostAssessment(assessmentId, value);
-            Optional<CurrencyRate> currencyRate = currencyRateRepository.getCurrencyRateByCurrency(value);
+            Optional<CurrencyRate> currencyRate = currencyRateRepository.getCurrencyRateByDate(value, dateGenerator.getCurrentDate());
 
             if (tempSum.isPresent() && currencyRate.isPresent()) {
                 sum += (tempSum.get() * currencyRate.get().getRate());

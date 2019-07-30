@@ -9,23 +9,17 @@ import java.time.format.DateTimeFormatter;
 @Component
 public class DateGenerator {
 
-    private DateTimeFormatter dateTimeFormatter;
-
-    public DateGenerator() {
-
-    }
-
-    public Date getCurrentDate(){
-        dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    public static Date getCurrentDate() {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDateTime localDateTime = LocalDateTime.now();
         return Date.valueOf(dateTimeFormatter.format(localDateTime));
     }
 
-    public String getCurrentYearText(){
-       return getCurrentDate().toString().substring(0,4);
+    public static String getCurrentYearText() {
+        return getCurrentDate().toString().substring(0, 4);
     }
 
-    public Date getFistDateOfCurrentYear(){
+    public static Date getFistDateOfCurrentYear() {
         String firstOfJanuary = "01-01";
         return Date.valueOf(getCurrentYearText() + '-' + firstOfJanuary);
     }

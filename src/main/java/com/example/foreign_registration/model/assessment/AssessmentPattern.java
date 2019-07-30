@@ -26,7 +26,7 @@ public class AssessmentPattern {
     @ManyToOne
     private ProductStatus productStatus;
 
-    @OneToMany(mappedBy = "assessment_pattern")
+    @OneToMany(mappedBy = "assessmentPattern")
     @JsonIgnore
     private List<DepartmentAssessment> departmentAssessments;
 

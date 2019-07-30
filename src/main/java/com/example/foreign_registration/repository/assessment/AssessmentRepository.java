@@ -12,8 +12,8 @@ import java.util.Optional;
 
 public interface AssessmentRepository extends JpaRepository<Assessment, Long> {
 
-    @Query("SELECT a FROM Assessment a " +
-            "LEFT JOIN  a.processes p " +
+    @Query("SELECT DISTINCT a FROM Assessment a " +
+            "LEFT JOIN a.processes p " +
             "LEFT JOIN p.product pr " +
             "LEFT JOIN pr.product_status ps " +
             "LEFT JOIN a.destined_product_status dps " +
@@ -31,19 +31,20 @@ public interface AssessmentRepository extends JpaRepository<Assessment, Long> {
             "OR pq.category_name LIKE CONCAT('%',:keyWord, '%') " +
             "OR rpq.category_name LIKE CONCAT('%',:keyWord, '%') " +
             "OR cl.name LIKE CONCAT('%',:keyWord, '%') " +
-            "OR s.name LIKE CONCAT('%',:keyWord, '%')")
+            "OR s.name LIKE CONCAT('%',:keyWord, '%') " +
+            "ORDER BY a.id DESC")
     public List<Assessment> listAllByKeyWord(@Param("keyWord") String keyWord);
 
 
-    @Query("SELECT p FROM Assessment a LEFT JOIN  a.processes p WHERE a.id = :assessmentId AND p.id = :processId")
+    @Query("SELECT p FROM Assessment a LEFT JOIN  a.processes p WHERE a.id  = :assessmentId AND p.id = :processId")
     public Process getProcessForAssessment(@Param("processId") long processId, @Param("assessmentId") long assessmentId);
 
     @Query("SELECT MAX(a.id) FROM Assessment a")
     public Optional<Long> getMaxAssessmentId();
 
-    Optional<Assessment> findByAssessmentNo(String assessmentNo);
+    Optional<Assessment> findByNumber(String assessmentNo);
 
-    @Query("SELECT ass.assessmentNo FROM Assessment ass WHERE ass.id = (SELECT MAX(a.id) FROM Assessment a where a.order_date between :firstDateOfThisYear and :lastDateOfThisYear)")
+    @Query("SELECT ass.number FROM Assessment ass WHERE ass.id = (SELECT MAX(a.id) FROM Assessment a where a.creationDate between :firstDateOfThisYear and :lastDateOfThisYear)")
     public Optional<String> getMaxAssessmentNoForCurrentYear(@Param("firstDateOfThisYear") Date firstDate, @Param("lastDateOfThisYear") Date lastDate);
 
     @Query("SELECT COUNT(a) FROM Assessment a")

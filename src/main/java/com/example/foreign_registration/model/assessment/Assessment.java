@@ -10,13 +10,7 @@ import java.sql.Date;
 import java.util.List;
 
 @Entity
-public class Assessment {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    private String assessmentNo;
+public class Assessment extends AppObject{
 
     @ManyToOne
     private Country registration_country;
@@ -38,26 +32,19 @@ public class Assessment {
     @JsonIgnore
     private List<PackageSize> package_sizes;
 
-    @OneToMany(mappedBy = "assessment")
     @JsonIgnore
+    @OneToMany(mappedBy = "assessment")
     private List<AssessDepartConfirmation> assessDepartConfirmations;
-
-    @ManyToOne
-    private User ordering_person;
-
-    @ManyToOne
-    private Status status;
-
-    private Date order_date;
 
     @ManyToMany(mappedBy = "assessments")
     @JsonIgnore
     private List<Process> processes;
 
-    @OneToMany(mappedBy = "assessment")
     @JsonIgnore
+    @OneToMany(mappedBy = "assessment")
     private List<DepartmentAssessment> departmentAssessments;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "assessment")
     private List<Calculation> calculationList;
 
@@ -69,15 +56,16 @@ public class Assessment {
     public Assessment() {
     }
 
-    public Assessment(String assessmentNo, Country registration_country, ProductStatus destined_product_status,
+    public Assessment(String number, Country registration_country, ProductStatus destined_product_status,
                       AvailabilityStatus availability_status, ProductQualification required_prod_qualification,
                       List<Requirement> requirements,
                       List<PackageSize> package_sizes, List<AssessDepartConfirmation> assessDepartConfirmations,
-                      User ordering_person, Status status, Date order_date, List<Process> processes,
+                      User creator, Status status, Date creationDate, List<Process> processes,
                       List<DepartmentAssessment> departmentAssessments, List<Calculation> calculationList,
                       boolean s_module, boolean clinical_module,
                       boolean nonclinical_module, boolean quality_module) {
-        this.assessmentNo = assessmentNo;
+
+        super(number, status, creationDate, creator);
         this.registration_country = registration_country;
         this.destined_product_status = destined_product_status;
         this.availability_status = availability_status;
@@ -85,9 +73,6 @@ public class Assessment {
         this.requirements = requirements;
         this.package_sizes = package_sizes;
         this.assessDepartConfirmations = assessDepartConfirmations;
-        this.ordering_person = ordering_person;
-        this.status = status;
-        this.order_date = order_date;
         this.processes = processes;
         this.departmentAssessments = departmentAssessments;
         this.s_module = s_module;
@@ -97,32 +82,16 @@ public class Assessment {
         this.calculationList = calculationList;
     }
 
-    public Assessment(String assessmentNo, Country registration_country, ProductStatus destined_product_status, AvailabilityStatus availability_status, ProductQualification required_prod_qualification, User ordering_person, Status status, Date order_date) {
-        this.assessmentNo = assessmentNo;
+    public Assessment(String number, Country registration_country, ProductStatus destined_product_status, AvailabilityStatus availability_status, ProductQualification required_prod_qualification, User creator, Status status, Date creationDate) {
+//         this.number = number;
+        super(number, status, creationDate, creator);
         this.registration_country = registration_country;
         this.destined_product_status = destined_product_status;
         this.availability_status = availability_status;
         this.required_prod_qualification = required_prod_qualification;
-        this.ordering_person = ordering_person;
-        this.status = status;
-        this.order_date = order_date;
+
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getAssessmentNo() {
-        return assessmentNo;
-    }
-
-    public void setAssessmentNo(String assessmentNo) {
-        this.assessmentNo = assessmentNo;
-    }
 
     public Country getRegistration_country() {
         return registration_country;
@@ -180,29 +149,6 @@ public class Assessment {
         this.assessDepartConfirmations = assessDepartConfirmations;
     }
 
-    public User getOrdering_person() {
-        return ordering_person;
-    }
-
-    public void setOrdering_person(User ordering_person) {
-        this.ordering_person = ordering_person;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public Date getOrder_date() {
-        return order_date;
-    }
-
-    public void setOrder_date(Date order_date) {
-        this.order_date = order_date;
-    }
 
     public List<Process> getProcesses() {
         return processes;
@@ -269,4 +215,31 @@ public class Assessment {
         }
     }
 
+    public List<Calculation> getCalculationList() {
+        return calculationList;
+    }
+
+    public void setCalculationList(List<Calculation> calculationList) {
+        this.calculationList = calculationList;
+    }
+
+    @Override
+    public String toString() {
+        return "Assessment{" +
+                "registration_country=" + registration_country +
+                ", destined_product_status=" + destined_product_status +
+                ", availability_status=" + availability_status +
+                ", required_prod_qualification=" + required_prod_qualification +
+                ", requirements=" + requirements +
+                ", package_sizes=" + package_sizes +
+                ", assessDepartConfirmations=" + assessDepartConfirmations +
+                ", processes=" + processes +
+                ", departmentAssessments=" + departmentAssessments +
+                ", calculationList=" + calculationList +
+                ", s_module=" + s_module +
+                ", clinical_module=" + clinical_module +
+                ", nonclinical_module=" + nonclinical_module +
+                ", quality_module=" + quality_module +
+                '}';
+    }
 }

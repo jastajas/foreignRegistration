@@ -91,47 +91,47 @@
 }
 
 /*module2 collapse*/
-#magicBox2 table thead {
+#departmentAssessResult thead {
     background-color: rgb(70, 185, 70);
 }
 
-#magicBox2 table thead tr th:first-child {
+#departmentAssessResult thead tr th:first-child {
     width: 100px;
 }
 
-#magicBox2 table tbody tr td {
+#departmentAssessResult tbody tr td {
     font-size: 12px;
 }
 
-#magicBox2 table tbody tr td:nth-child(1) {
+#departmentAssessResult tbody tr td:nth-child(1) {
     width: 25%;
 }
 
-#magicBox2 table tbody tr td:nth-child(2) {
+#departmentAssessResult tbody tr td:nth-child(2) {
     width: 25%;
 }
 
-#magicBox2 table tbody tr td:nth-child(3) ul {
+#departmentAssessResult tbody tr td:nth-child(3) ul {
     list-style-type: none;
 }
 
-#magicBox2 table tbody tr td:nth-child(3) ul li {
+#departmentAssessResult tbody tr td:nth-child(3) ul li {
     margin: 5px;
     margin-bottom: 10px;
     margin-top: 10px;
 }
 
-#magicBox2 table tbody tr td:nth-child(4) ul {
+#departmentAssessResult tbody tr td:nth-child(4) ul {
     list-style-type: none;
 }
 
-#magicBox2 table tbody tr td:nth-child(4) ul li {
+#departmentAssessResult tbody tr td:nth-child(4) ul li {
     margin: 5px;
     margin-bottom: 10px;
     margin-top: 10px;
 }
 
-#magicBox2 table thead tr th {
+#departmentAssessResult thead tr th {
     font-size: 12px;
 }
 

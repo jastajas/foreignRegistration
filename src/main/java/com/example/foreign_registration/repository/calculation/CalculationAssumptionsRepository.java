@@ -12,10 +12,16 @@ import java.util.List;
 public interface CalculationAssumptionsRepository extends JpaRepository<CalculationAssumptions, Long> {
 
 
-    @Query("SELECT ca FROM CalculationAssumptions ca WHERE ca.calculation = :calculation ORDER BY :package")
-    public List<CalculationAssumptions> getCalcAssumtionsByCalculation(@Param("calculation") Calculation calculation,
-                                                                       @Param("package")PackageSize packageSize);
+    @Query("SELECT ca FROM CalculationAssumptions ca WHERE ca.calculation = :calculation")
+    public List<CalculationAssumptions> getAllCalcAssumtionsByCalculation(@Param("calculation") Calculation calculation);
 
+    @Query("SELECT ca FROM CalculationAssumptions ca WHERE ca.calculation = :calculation AND ca.packageSize IS NULL")
+    public List<CalculationAssumptions> getMainCalcAssumtionsByCalculation(@Param("calculation") Calculation calculation);
 
+    @Query("SELECT ca FROM CalculationAssumptions ca WHERE ca.calculation = :calculation AND ca.packageSize IS NOT NULL ORDER BY ca.packageSize")
+    public List<CalculationAssumptions> getCalcAssumtionsForPackagesByCalculation(@Param("calculation") Calculation calculation);
+
+    @Query("SELECT DISTINCT(ca.packageSize) FROM CalculationAssumptions ca WHERE ca.calculation = :calculation ORDER BY ca.packageSize")
+    public List<PackageSize> getPackSizesForCalculation(@Param("calculation") Calculation calculation);
 
 }

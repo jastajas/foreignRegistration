@@ -2,6 +2,7 @@ package com.example.foreign_registration.repository.app;
 
 import com.example.foreign_registration.model.app.Unit;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
 

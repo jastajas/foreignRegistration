@@ -1,4 +1,3 @@
-//window.onload = function () {
 
 var addAssessButton = document.getElementById("addAssessButton");
 var sideMenuButton = document.getElementById("sideMenuButton");

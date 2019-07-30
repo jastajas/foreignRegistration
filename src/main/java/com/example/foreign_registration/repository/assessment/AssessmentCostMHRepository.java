@@ -18,4 +18,6 @@ public interface AssessmentCostMHRepository extends JpaRepository<AssessmentCost
     @Query("SELECT SUM(acm.mh) FROM DepartmentAssessment da LEFT JOIN da.assessment a LEFT JOIN da.assessmentCostMHs acm WHERE a.id = :assessmentID GROUP BY a.id")
     public Optional<Integer> getSumMhAssessment(@Param("assessmentID") long assessmentID);
 
+
+
 }

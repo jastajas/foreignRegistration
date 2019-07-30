@@ -15,15 +15,15 @@ public class DepartmentAssessment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    private String assessment_description;
+    private String assessmentDescription;
 
     @ManyToOne
     private User author;
 
     @ManyToOne
-    private AssessmentPattern assessment_pattern;
+    private AssessmentPattern assessmentPattern;
 
     private String otherAssessmentSubject;
 
@@ -45,12 +45,12 @@ public class DepartmentAssessment {
     public DepartmentAssessment() {
     }
 
-    public DepartmentAssessment(String assessment_description, User author, AssessmentPattern assessment_pattern,
+    public DepartmentAssessment(String assessmentDescription, User author, AssessmentPattern assessmentPattern,
                                 String otherAssessmentSubject, Department other_subject_department, Assessment assessment,
                                 Date assessment_date, CriticalityScale criticalityScale, List<AssessmentCostMH> assessmentCostMHs) {
-        this.assessment_description = assessment_description;
+        this.assessmentDescription = assessmentDescription;
         this.author = author;
-        this.assessment_pattern = assessment_pattern;
+        this.assessmentPattern = assessmentPattern;
         this.otherAssessmentSubject = otherAssessmentSubject;
         this.other_subject_department = other_subject_department;
         this.assessment = assessment;
@@ -59,8 +59,8 @@ public class DepartmentAssessment {
         this.assessmentCostMHs = assessmentCostMHs;
     }
 
-    public DepartmentAssessment(AssessmentPattern assessment_pattern, Assessment assessment) {
-        this.assessment_pattern = assessment_pattern;
+    public DepartmentAssessment(AssessmentPattern assessmentPattern, Assessment assessment) {
+        this.assessmentPattern = assessmentPattern;
         this.assessment = assessment;
     }
 
@@ -70,20 +70,21 @@ public class DepartmentAssessment {
         this.assessment = assessment;
     }
 
-    public long getId() {
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getAssessment_description() {
-        return assessment_description;
+    public String getAssessmentDescription() {
+        return assessmentDescription;
     }
 
-    public void setAssessment_description(String assessment_description) {
-        this.assessment_description = assessment_description;
+    public void setAssessmentDescription(String assessmentDescription) {
+        this.assessmentDescription = assessmentDescription;
     }
 
     public User getAuthor() {
@@ -94,12 +95,12 @@ public class DepartmentAssessment {
         this.author = author;
     }
 
-    public AssessmentPattern getAssessment_pattern() {
-        return assessment_pattern;
+    public AssessmentPattern getAssessmentPattern() {
+        return assessmentPattern;
     }
 
-    public void setAssessment_pattern(AssessmentPattern assessment_pattern) {
-        this.assessment_pattern = assessment_pattern;
+    public void setAssessmentPattern(AssessmentPattern assessmentPattern) {
+        this.assessmentPattern = assessmentPattern;
     }
 
     public String getOtherAssessmentSubject() {
@@ -150,8 +151,8 @@ public class DepartmentAssessment {
         this.assessmentCostMHs = assessmentCostMHs;
     }
 
-    public void setDescriptonAndDateAndCriticalityAndManHours(String assessment_description, Date assessment_date, CriticalityScale criticalityScale) {
-        this.assessment_description = assessment_description;
+    public void setDescriptonAndDateAndCriticalityAndManHours(String assessmentDescription, Date assessment_date, CriticalityScale criticalityScale) {
+        this.assessmentDescription = assessmentDescription;
         this.assessment_date = assessment_date;
         this.criticalityScale = criticalityScale;
     }

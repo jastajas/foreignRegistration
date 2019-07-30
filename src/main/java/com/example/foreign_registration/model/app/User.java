@@ -31,7 +31,7 @@ public class User {
     @ManyToOne
     private Department department;
 
-    @OneToMany(mappedBy = "ordering_person")
+    @OneToMany(mappedBy = "creator")
     @JsonIgnore
     private List<Assessment> assessments;
 
@@ -39,11 +39,13 @@ public class User {
     @JsonIgnore
     private List<DepartmentAssessment> departmentAssessments;
 
-    @OneToMany(mappedBy = "order_owner")
+    @OneToMany(mappedBy = "creator")
     @JsonIgnore
     private List<Process> processes;
 
-    //todo zakotwiczyć taski i json ignore
+
+
+    //todo zakotwiczyć taski i json ignore + calkulacje
 
     public User(String name, String surname, String username, String password, Boolean enabled, Position position, Department department, List<Assessment> assessments, List<DepartmentAssessment> departmentAssessments, List<Process> processes) {
         this.name = name;
@@ -167,5 +169,22 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, surname, username, password, enabled, position, department);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", enabled=" + enabled +
+                ", position=" + position +
+                ", department=" + department +
+                ", assessments=" + assessments +
+                ", departmentAssessments=" + departmentAssessments +
+                ", processes=" + processes +
+                '}';
     }
 }

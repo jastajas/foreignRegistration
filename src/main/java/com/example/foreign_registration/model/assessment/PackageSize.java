@@ -2,9 +2,11 @@ package com.example.foreign_registration.model.assessment;
 
 import com.example.foreign_registration.model.app.Unit;
 import com.example.foreign_registration.model.calculation.CalculationAssumptions;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class PackageSize {
@@ -22,6 +24,7 @@ public class PackageSize {
     @ManyToOne
     private Assessment assessment;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "packageSize")
     private List<CalculationAssumptions> calculationAssumptions;
 
@@ -64,5 +67,20 @@ public class PackageSize {
 
     public void setAssessment(Assessment assessment) {
         this.assessment = assessment;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PackageSize that = (PackageSize) o;
+        return id == that.id &&
+                Double.compare(that.size, size) == 0 &&
+                Objects.equals(unit, that.unit);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, size, unit);
     }
 }

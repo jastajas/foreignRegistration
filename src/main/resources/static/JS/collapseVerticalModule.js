@@ -127,7 +127,7 @@ function changeAssessmentDetail(changedField, btnName, objectType, objectId) {
     xhttp.onload = function () {
         //console.log('DONE', xhttp.readyState); // readyState will be 4
         if (xhttp.status === 404) {
-            alert("Dupa blada");
+            alert("Object not found");
         }
         document.getElementById(btnName).textContent = "EDIT";
         document.getElementById(changedField).disabled = true;

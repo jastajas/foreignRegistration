@@ -116,4 +116,18 @@ public class Status {
     public void setCalculations(List<Calculation> calculations) {
         this.calculations = calculations;
     }
+
+    @Override
+    public String toString() {
+        return "Status{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", category='" + category + '\'' +
+                ", assessments=" + assessments +
+                ", dossiers=" + dossiers +
+                ", processes=" + processes +
+                ", tasks=" + tasks +
+                ", calculations=" + calculations +
+                '}';
+    }
 }

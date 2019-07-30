@@ -64,4 +64,13 @@ public class Position {
     public int hashCode() {
         return Objects.hash(id, name);
     }
+
+    @Override
+    public String toString() {
+        return "Position{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", userList=" + userList +
+                '}';
+    }
 }

@@ -41,6 +41,15 @@ public class ProcessRestController {
         this.trRepository = trRepository;
     }
 
+    @GetMapping("/api/process")
+    public ResponseEntity<List<Process>> getAllProcesses() {
+        List<Process> processList = processRepository.findAll();
+        if (processList.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+    return ResponseEntity.ok(processList);
+    }
+
     @PutMapping("/api/process/{id}/{paramName}/{paramValue}")
     public ResponseEntity<Process> changeProcessDetail(@PathVariable Long id, @PathVariable String paramName, @PathVariable String paramValue) {
 
@@ -68,6 +77,14 @@ public class ProcessRestController {
                 break;
             case "cooperationName":
                 processOptional.get().setModel_cooperation(ModelCooperation.valueOf(paramValue));
+                processRepository.save(processOptional.get());
+                break;
+            case "contactPersonData":
+                processOptional.get().setContact_person_data(paramValue);
+                processRepository.save(processOptional.get());
+                break;
+            case "agencyAdress":
+                processOptional.get().setAgency_adress(paramValue);
                 processRepository.save(processOptional.get());
                 break;
             default:

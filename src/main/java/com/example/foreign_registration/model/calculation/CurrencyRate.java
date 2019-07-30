@@ -3,33 +3,36 @@ package com.example.foreign_registration.model.calculation;
 import com.example.foreign_registration.model.app.Currency;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 public class CurrencyRate {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @Column(unique = true)
     @Enumerated(EnumType.STRING)
     private Currency currency;
 
     private double rate;
 
+    private Date updateDate;
+
     public CurrencyRate() {
     }
 
-    public CurrencyRate(Currency currency, double rate) {
+    public CurrencyRate(Currency currency, double rate, Date updateDate) {
         this.currency = currency;
         this.rate = rate;
+        this.updateDate = updateDate;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -49,12 +52,11 @@ public class CurrencyRate {
         this.rate = rate;
     }
 
-    @Override
-    public String toString() {
-        return "CurrencyRate{" +
-                "id=" + id +
-                ", currency=" + currency +
-                ", rate=" + rate +
-                '}';
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
     }
 }

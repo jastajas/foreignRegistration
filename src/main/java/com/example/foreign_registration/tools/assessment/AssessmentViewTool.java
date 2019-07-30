@@ -34,16 +34,16 @@ public class AssessmentViewTool {
         return true;
     }
 
-    public boolean isEditableByThisDepartment(long idDepartmentAssessment, long loggedUserIdDepartment) {
+    public boolean isEditableByThisDepartment(Long idDepartmentAssessment, Long loggedUserIdDepartment) {
 
         Optional<DepartmentAssessment> departmentAssessmentOptional = daRepository.findById(idDepartmentAssessment);
         if (!departmentAssessmentOptional.isPresent()) {
             return false;
-        } else if (departmentAssessmentOptional.get().getAssessment_pattern() == null) {
+        } else if (departmentAssessmentOptional.get().getAssessmentPattern() == null) {
             return departmentAssessmentOptional.get().getOther_subject_department().getId() == loggedUserIdDepartment;
         }
 
-        return departmentAssessmentOptional.get().getAssessment_pattern().getDepartment().getId() == loggedUserIdDepartment;
+        return departmentAssessmentOptional.get().getAssessmentPattern().getDepartment().getId() == loggedUserIdDepartment;
     }
 
 }
